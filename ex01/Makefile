@@ -14,6 +14,9 @@ FFLAGS = -g -fsanitize=address
 
 all:	$(NAME)
 
+%.o : %.cpp
+		$(CC) $(CFLAGS) -c $<
+
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 

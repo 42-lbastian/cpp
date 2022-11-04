@@ -1,14 +1,29 @@
 #include "PhoneBook.hpp"
 #include "main.hpp"
+#include <stdlib.h> 
 
 void	ft_read_arg(std::string msg, std::string& res)
 {
-	res = "";
-	std::cout << msg << ": " << std::endl;
-	while (res.length() == 0)
+	while (1)
 	{
-		std::cin >> res;
+		res = "";
+		std::cout << msg << ": " << std::endl;
+		//std::cin >> res;
+		getline(std::cin, res);
+		if (!res.empty())
+			break;
+		//std::cin.clear();
+		//std::cin.ignore();
 	}
+
+	std::cout << msg << ": " << std::endl;
+//	while (getline(std::cin, res))
+//		std::cout << msg << ": " << std::endl;
+//	if (std::cin.eof())
+//	{
+//		std::cout << "EOF" << std::endl;
+//		exit(0);
+//	}
 }
 
 void	ft_print_layout(std::string str)
@@ -90,7 +105,11 @@ int main()
 			{
 				std::cin >> entry;
 				if (std::cin)
+				{
+					std::cin.clear();
+					std::cin.ignore();
 					break;
+				}
 				std::cin.clear();
 				std::cin.ignore();
 			}

@@ -23,7 +23,6 @@ void	PhoneBook::ft_print_contact(int index) const
 void	PhoneBook::ft_print_line(int nb_contact) const
 {
 	int i;
-	int nb_to_complete;
 
 	i = 0;
 	while (i < 8 && i < nb_contact)
