@@ -10,15 +10,16 @@ void	ft_read_arg(std::string msg, std::string& res)
 		std::cout << msg << ": " << std::endl;
 		//std::cin >> res;
 		getline(std::cin, res);
-		if (!res.empty())
+		if (std::cin.fail() || std::cin.eof())
+		{
+			std::cin.clear();
+			std::cin.ignore();
+		}
+		else if (!res.empty())
 			break;
-		//std::cin.clear();
-		//std::cin.ignore();
+
 	}
 
-	std::cout << msg << ": " << std::endl;
-//	while (getline(std::cin, res))
-//		std::cout << msg << ": " << std::endl;
 //	if (std::cin.eof())
 //	{
 //		std::cout << "EOF" << std::endl;
