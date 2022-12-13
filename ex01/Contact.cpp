@@ -10,7 +10,7 @@ Contact::~Contact()
 	//std::cout << "Contact Destroyed" << std::endl;
 }
 
-void Contact::ft_print_info(void) const
+void Contact::cpp_print_info(void) const
 {
 	std::cout << "First name: " << this->_first_name << std::endl;
 	std::cout << "Last name: " << this->_last_name << std::endl;
@@ -21,7 +21,7 @@ void Contact::ft_print_info(void) const
 }
 
 
-void Contact::ft_set_contact(std::string fname, std::string lname, std::string nickname, std::string nb, std::string secret)
+void Contact::cpp_set_contact(std::string fname, std::string lname, std::string nickname, std::string nb, std::string secret)
 {
 	this->_first_name = fname;
 	this->_last_name = lname;
@@ -30,17 +30,17 @@ void Contact::ft_set_contact(std::string fname, std::string lname, std::string n
 	this->_darkest_secret = secret;
 }
 
-std::string	Contact::ft_get_first_name(void) const
+std::string	Contact::cpp_get_first_name(void) const
 {
 	return (this->_first_name);
 }
 
-std::string	Contact::ft_get_last_name(void) const
+std::string	Contact::cpp_get_last_name(void) const
 {
 	return (this->_last_name);
 }
 
-std::string	Contact::ft_get_nickname(void) const
+std::string	Contact::cpp_get_nickname(void) const
 {
 	return (this->_nickname);
 }

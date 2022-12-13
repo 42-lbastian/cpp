@@ -12,9 +12,9 @@ public:
 	~PhoneBook();
 	
 
-	void	ft_add_contact(std::string fname, std::string lname, std::string nickname, std::string nb, std::string secret, int index);
-	void	ft_print_contact(int index) const;
-	void	ft_print_line(int nb_contact) const;
+	void	cpp_add_contact(std::string fname, std::string lname, std::string nickname, std::string nb, std::string secret, int index);
+	void	cpp_print_contact(int index) const;
+	void	cpp_print_line(int nb_contact) const;
 
 private:
 	Contact _contact[8];
