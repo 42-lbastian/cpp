@@ -16,35 +16,6 @@ int cpp_read_arg(std::string msg, std::string& res)
 	return (0);
 }
 
-std::string cpp_find_replace(std::string str, std::string find, std::string replace)
-{
-	std::string ret;
-	size_t      index_find;
-	size_t      index_str;
-	size_t      index_ret;
-
-	index_str = 0;
-	index_ret = 0;
-	ret = "";
-	while (str[index_str])
-	{
-		index_find = str.find(find, index_str);
-		while ((index_str < index_find) && str[index_str])
-		{
-			ret.insert(index_ret, 1, str.at(index_str));
-			index_str++;
-			index_ret++;
-		}
-		if (str[index_str])
-		{
-			ret.insert(index_ret, replace);
-			index_str += find.length();
-			index_ret += replace.length();
-		}
-	}
-	return (ret);
-}
-
 int main()
 {
 	std::string   read_str;
@@ -60,12 +31,13 @@ int main()
 	if (file_in.is_open())
 	{
 		file_out.open((filename + ".replace").c_str(), std::ios::out | std::ios::trunc);
-		while (getline(file_in, read_str))
+		while (1)
 		{
-			file_out << cpp_find_replace(read_str, find, replace) << std::endl;
+			file_in >> read_str;
+			if (read_str.empty())
+				break;
+			file_out << read_str;
 		}
-		file_out.close();
-		file_in.close();
 	}
 	else
 		std::cout << "File not found" << std::endl;
