@@ -32,7 +32,7 @@ void Harl::error(void) const
 
 void Harl::complain(std::string level)
 {
-	std::string array_level[NB_CMD] = {"debug", "info", "warning", "error"};
+	std::string array_level[NB_CMD] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	void        ((Harl::*array_point[4])(void) const)= {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	int         i;
 
@@ -45,5 +45,41 @@ void Harl::complain(std::string level)
 			break ;
 		}
 		i++;
+	}
+}
+
+void Harl::execute_cmd(std::string level, void (Harl::*point_func)(void)const)
+{
+	std::cout << "[ " << level << " ]" << std::endl;
+	(this->*point_func)();
+	std::cout << std::endl;
+}
+
+void Harl::filter(std::string level)
+{
+	std::string array_level[NB_CMD] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	void        ((Harl::*array_point[4])(void) const)= {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	int         i;
+
+	i = 0;
+	while (i < NB_CMD)
+	{
+		if (array_level[i] == level)
+			break ;
+		i++;
+	}
+	switch (i)
+	{
+		case 0:
+			this->execute_cmd(array_level[0], array_point[0]);
+		case 1:
+			this->execute_cmd(array_level[1], array_point[1]);
+		case 2:
+			this->execute_cmd(array_level[2], array_point[2]);
+		case 3:
+			this->execute_cmd(array_level[3], array_point[3]);
+			break;
+		default:
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 	}
 }

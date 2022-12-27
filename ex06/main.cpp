@@ -2,24 +2,25 @@
 
 int main(int argc, char **argv)
 {
+	Harl harl = Harl();
+	
 	if (argc != 2)
 	{
-		Harl harl = Harl();
-
 		std::cout << "Incorrect Level" << std::endl;
 		harl.complain("IncorrectLevel");
 
-		std::cout << std::endl << "Error" << std::endl;
-		harl.complain("error");
+		std::cout << std::endl << "DEBUG" << std::endl;
+		harl.complain("DEBUG");
 
-		std::cout << std::endl << "Debug" << std::endl;
-		harl.complain("debug");
+		std::cout << std::endl << "INFO" << std::endl;
+		harl.complain("INFO");
 
-		std::cout << std::endl << "Info" << std::endl;
-		harl.complain("info");
+		std::cout << std::endl << "WARNING" << std::endl;
+		harl.complain("WARNING");
 
-		std::cout << std::endl << "Warning" << std::endl;
-		harl.complain("warning");
+		std::cout << std::endl << "ERROR" << std::endl;
+		harl.complain("ERROR");
 	}
-
+	else
+		harl.filter(std::string(argv[1]));		
 }
