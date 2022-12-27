@@ -32,7 +32,7 @@ void Harl::error(void) const
 
 void Harl::complain(std::string level)
 {
-	std::string array_level[NB_CMD] = {"debug", "info", "warning", "error"};
+	std::string array_level[NB_CMD] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	void        ((Harl::*array_point[4])(void) const)= {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	int         i;
 
