@@ -9,15 +9,15 @@ class Harl
 	public:
 		Harl();
 		~Harl();
-		void complain(std::string level);
-		void filter(std::string level);
+		void complain(std::string level) const;
+		void filter(std::string level) const;
 
 	private:
-		void execute_cmd(std::string level, void (Harl::*point_func)(void)const);
-		void debug(void) const;
-		void info(void) const;
-		void warning(void) const;
-		void error(void) const;
+		void _execute_cmd(std::string level, void (Harl::*point_func)(void)const) const;
+		void _debug(void) const;
+		void _info(void) const;
+		void _warning(void) const;
+		void _error(void) const;
 };
 
 #endif

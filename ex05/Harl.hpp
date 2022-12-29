@@ -9,13 +9,13 @@ class Harl
 	public:
 		Harl();
 		~Harl();
-		void complain(std::string level);
+		void complain(std::string level) const;
 
 	private:
-		void debug(void) const;
-		void info(void) const;
-		void warning(void) const;
-		void error(void) const;
+		void _debug(void) const;
+		void _info(void) const;
+		void _warning(void) const;
+		void _error(void) const;
 };
 
 #endif
