@@ -15,7 +15,7 @@ int main()
 	toto.attack();
 
 
-	std::cout << std::endl << std::endl << "Titi is HumanB" << std::endl;
+	std::cout << std::endl << std::endl << "Titi is HumanB with no weapon" << std::endl;
 	HumanB titi = HumanB("Titi");
 	std::cout << "Titi with no weapon:" << std::endl;
 	titi.attack();
@@ -28,6 +28,12 @@ int main()
 	std::cout << std::endl << "Titi fight with Destructor3000 Premium Deluxe:" << std::endl;
 	weapon.setType("Destructor3000 Premium Deluxe");
 	titi.attack();
+
+	std::cout << std::endl << std::endl << "Tata is HumanB with weapon" << std::endl;
+	HumanB tata = HumanB("Tata", weapon);
+	weapon.setType("Ratatata");
+	tata.attack();
+
 
 	return (0);
 }

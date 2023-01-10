@@ -5,6 +5,10 @@ HumanB::HumanB(std::string name):_name(name)
 	this->_weapon = NULL;
 }
 
+HumanB::HumanB(std::string name, Weapon& weapon):_name(name), _weapon(&weapon)
+{
+}
+
 HumanB::~HumanB()
 {}
 
