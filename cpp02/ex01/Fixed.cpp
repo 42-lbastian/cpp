@@ -9,7 +9,7 @@ Fixed::Fixed(void): _fixed_point(0)
 Fixed::Fixed(const int nb): _fixed_point(nb)
 {
 	std::cout << "Int constructor called" << std::endl;
-	this->_fixed_point = roundf((nb * ((float)(1 << this->_nb_fract_bits))));
+	this->_fixed_point = (nb << this->_nb_fract_bits);
 }
 
 Fixed::Fixed(const float nb)
@@ -55,7 +55,7 @@ void Fixed::setRawBits(int const raw)
 
 int Fixed::toInt(void) const
 {
-	return ((int)(((float)this->_fixed_point) / ((float)(1 << this->_nb_fract_bits))));
+	return (this->_fixed_point >> this->_nb_fract_bits);
 }
 
 float Fixed::toFloat(void) const
