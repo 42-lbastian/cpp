@@ -11,6 +11,7 @@ class ScavTrap: public ClapTrap
 		~ScavTrap(void);
 		ScavTrap& operator=(ScavTrap& scavtrap);
 		void guardGate(void);
+		void attack(const std::string& target);
 };
 
 

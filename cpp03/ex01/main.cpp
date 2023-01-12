@@ -27,6 +27,7 @@ int main(void)
 
 	std::cout << std::endl << "------ScavTrap------" << std::endl;
 	ScavTrap scav("Otot");
+	scav.guardGate();
 	scav.attack("Tutu");
 	scav.beRepaired(10);
 	scav.takeDamage(5);
@@ -44,7 +45,14 @@ int main(void)
 	scav.beRepaired(2);
 	scav.attack("Tata");
 	scav.beRepaired(2);
-	scav.takeDamage(7);
+	scav.takeDamage(95);
+	scav.guardGate();
 	scav.attack("Tata");
+	for (int i = 0; i < 36; i++)
+		scav.beRepaired(1);
+	scav.guardGate();
+	scav.takeDamage(40);
+	scav.attack("Tata");
+	scav.guardGate();
 	return (0);
 }

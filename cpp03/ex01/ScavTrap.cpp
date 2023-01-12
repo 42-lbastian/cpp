@@ -35,7 +35,22 @@ ScavTrap& ScavTrap::operator=(ScavTrap& scavtrap)
 	return (*this);
 }
 
+void ScavTrap::attack(const std::string& target)
+{
+	if (this->_check_status() == 0)
+	{
+		this->_energy_point--;
+		std::cout << this->_name << " obliterate " << target << ", causing "
+			<< this->_attack_dmg << " points of damage ! -- Energy point available: "
+			<< this->_energy_point << std::endl;
+	}
+}
+
 void ScavTrap::guardGate(void)
 {
-	std::cout << _name << " is now in gate keeper mode" << std::endl;
+	if (this->_check_status() == 0)
+	{
+		this->_energy_point--;
+		std::cout << _name << " is now in gate keeper mode" << std::endl;
+	}
 }

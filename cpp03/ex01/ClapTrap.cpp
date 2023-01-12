@@ -37,11 +37,11 @@ ClapTrap::~ClapTrap(void)
 int ClapTrap::_check_status()
 {
 	if (this->_hit_point <= 0 && this->_energy_point <= 0)
-		std::cout << "ClapTrap " << this->_name << " has no hit point and no energy" << std::endl;
+		std::cout << this->_name << " has no hit point and no energy" << std::endl;
 	else if (this->_hit_point <= 0)
-		std::cout << "ClapTrap " << this->_name << " has no hit point" << std::endl;
+		std::cout << this->_name << " has no hit point" << std::endl;
 	else if (this->_energy_point <= 0)
-		std::cout << "ClapTrap " << this->_name << " has no energy" << std::endl;
+		std::cout << this->_name << " has no energy" << std::endl;
 	else
 		return (0);
 	return (1);
@@ -52,7 +52,7 @@ void ClapTrap::attack(const std::string& target)
 	if (this->_check_status() == 0)
 	{	
 		this->_energy_point--;
-		std::cout << "ClapTrap " << this->_name << " attacks " << target << ", causing " 
+		std::cout << this->_name << " attacks " << target << ", causing " 
 			<< this->_attack_dmg << " points of damage ! -- Energy point available: "
 			<< this->_energy_point << std::endl;
 	}
@@ -65,11 +65,11 @@ void ClapTrap::takeDamage(unsigned int amount)
 	else
 		this->_hit_point -= amount;
 	if (this->_hit_point <= 0)
-		std::cout << "ClapTrap " << this->_name << " take " << amount 
+		std::cout << this->_name << " take " << amount 
 			<< " damage and don't have hit point remaining -- Energy point available: " 
 			<< this->_energy_point << std::endl;
 	else
-		std::cout << "ClapTrap " << this->_name << " take " << amount << " damage and have "
+		std::cout << this->_name << " take " << amount << " damage and have "
 			<< this->_hit_point << " hp remaining -- Energy point available: " 
 			<< this->_energy_point << std::endl;
 }
@@ -84,14 +84,14 @@ void ClapTrap::beRepaired(unsigned int amount)
 		else
 			this->_hit_point += amount;
 		if (this->_hit_point == this->_hit_point_original)
-			std::cout << "ClapTrap " << this->_name << " repaired of " << amount
+			std::cout << this->_name << " repaired of " << amount
 				<< " point it's a full reparation, hit point: " << this->_hit_point
 				<< " -- Energy point available: " << this->_energy_point << std::endl;
 		else
-			std::cout << "ClapTrap " << this->_name << " repaired of " << amount
+			std::cout << this->_name << " repaired of " << amount
 				<< " point, hit point: " << this->_hit_point
 				<< " -- Energy point available: " << this->_energy_point << std::endl;
 	}
 	else
-		std::cout << "ClapTrap " << this->_name << " has no energy" << std::endl;
+		std::cout << this->_name << " has no energy" << std::endl;
 }
