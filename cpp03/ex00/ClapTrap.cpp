@@ -2,23 +2,23 @@
 
 ClapTrap::ClapTrap(void)
 {
-	std::cout << "Default Constructor Called" << std::endl;
+	std::cout << "Default Constructor" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name): _name(name), _hit_point_original(10) , _hit_point(10), _energy_point(10), _attack_dmg(0)
 {
-	std::cout << "Default Constructor Called" << std::endl;
+	std::cout << "Default Constructor" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& claptrap)
 {
-	std::cout << "Copy Constructor Called" << std::endl;
+	std::cout << "Copy Constructor" << std::endl;
 	(*this) = claptrap;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& claptrap)
 {
-	std::cout << "Overload Constructor Called" << std::endl;
+	std::cout << "Overload Constructor" << std::endl;
 	if ((this) != &claptrap)
 	{
 		this->_name = claptrap._name;	
@@ -31,7 +31,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& claptrap)
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << "Destructor Called" << std::endl;
+	std::cout << "Destructor" << std::endl;
 }
 
 int ClapTrap::_check_status()
