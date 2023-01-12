@@ -45,8 +45,12 @@ int ClapTrap::_check_status()
 void ClapTrap::attack(const std::string& target)
 {
 	if (this->_check_status() == 0)
+	{	
+		this->_energy_point--;
 		std::cout << "ClapTrap " << this->_name << " attacks " << target << ", causing " 
-			<< this->_attack_dmg << " points of damage !" << std::endl;
+			<< this->_attack_dmg << " points of damage ! -- Energy point available: "
+			<< this->_energy_point << std::endl;
+	}
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
@@ -67,7 +71,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (this->_check_status() == 0)
+	if (this->_energy_point > 0)
 	{
 		this->_energy_point--;
 		if (amount + this->_hit_point > this->_hit_point_original)
@@ -83,4 +87,6 @@ void ClapTrap::beRepaired(unsigned int amount)
 				<< " point, hit point: " << this->_hit_point
 				<< " -- Energy point available: " << this->_energy_point << std::endl;
 	}
+	else
+		std::cout << "ClapTrap " << this->_name << " has no energy" << std::endl;
 }
