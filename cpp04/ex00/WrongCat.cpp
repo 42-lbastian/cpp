@@ -19,6 +19,7 @@ WrongCat::~WrongCat(void)
 
 WrongCat& WrongCat::operator=(const WrongCat& wrongCat)
 {
+	std::cout << "Copy Operator WrongCat" << std::endl;
 	if (this != &wrongCat)
 		this->_type = wrongCat._type;
 	return (*this);

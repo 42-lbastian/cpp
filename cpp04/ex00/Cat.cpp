@@ -19,6 +19,7 @@ Cat::~Cat(void)
 
 Cat& Cat::operator=(const Cat& cat)
 {
+	std::cout << "Copy Operator Cat" << std::endl;
 	if (this != &cat)
 		this->_type = cat._type;
 	return (*this);

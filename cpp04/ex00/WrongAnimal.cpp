@@ -18,6 +18,7 @@ WrongAnimal::~WrongAnimal(void)
 
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal& wrongAnimal)
 {
+	std::cout << "Copy Operator WrongAnimal" << std::endl;
 	if (this != &wrongAnimal)
 		this->_type = wrongAnimal._type;
 	return (*this);

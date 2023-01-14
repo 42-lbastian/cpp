@@ -18,6 +18,7 @@ Animal::~Animal(void)
 
 Animal& Animal::operator=(const Animal& animal)
 {
+	std::cout << "Copy Operator Animal" << std::endl;
 	if (this != &animal)
 		this->_type = animal._type;
 	return (*this);

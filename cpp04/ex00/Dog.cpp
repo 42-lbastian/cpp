@@ -19,6 +19,7 @@ Dog::~Dog(void)
 
 Dog& Dog::operator=(const Dog& dog)
 {
+	std::cout << "Copy Operator Dog" << std::endl;
 	if (this != &dog)
 		this->_type = dog._type;
 	return (*this);
