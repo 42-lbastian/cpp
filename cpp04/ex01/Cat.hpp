@@ -12,9 +12,9 @@ class Cat: public Animal
 		Cat(const Cat& cat);
 		~Cat(void);
 		Cat& operator=(const Cat& cat);
+		Animal& operator=(const Animal& animal);
 		void makeSound(void) const;
-		void setIdea(std::string idea);
-		void printIdea(void) const;
+		Brain* getBrain(void) const;
 	
 	private:
 		Brain* _brain;

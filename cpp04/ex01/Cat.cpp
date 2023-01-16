@@ -30,17 +30,23 @@ Cat& Cat::operator=(const Cat& cat)
 	return (*this);
 }
 
+Animal& Cat::operator=(const Animal& animal)
+{
+	std::cout << "Copy Operator Cat" << std::endl;
+	if (this != &animal)
+	{
+		(*this->_brain) = (*animal.getBrain());
+		this->_type = animal.getType();
+	}
+	return (*this);
+}
+
 void Cat::makeSound(void) const
 {
 	std::cout << this->_type << " say miaaaaaaou" << std::endl;
 }
 
-void Cat::setIdea(std::string idea)
+Brain* Cat::getBrain(void) const
 {
-	this->_brain->setIdea(idea);
-}
-
-void Cat::printIdea(void) const
-{
-	this->_brain->printIdea();
+	return (this->_brain);
 }

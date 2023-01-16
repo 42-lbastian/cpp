@@ -4,14 +4,41 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
+#define NB_ANIMAL 10
+
 int main(void)
 {
-	Animal* cat = new Cat();
+	Animal* animal[NB_ANIMAL];
 
-	cat->setIdea("I'm a dog");
-	cat->printIdea();
-	Animal* cat_cpy = new Animal(*cat);
+	for (int i = 0; i < NB_ANIMAL; i++)
+	{
+		if (i < (NB_ANIMAL / 2))
+			animal[i] = new Cat();
+		if (i >= (NB_ANIMAL / 2))
+			animal[i] = new Dog();
+		std::cout << std::endl;
+	}
+	for (int i = 0; i < NB_ANIMAL; i++)
+	{
+		std::cout << "Animal nb " << i << " ";
+		animal[i]->makeSound();
+	}
 
-	delete cat;
+	std::cout << std::endl;
+	animal[NB_ANIMAL - 1]->getBrain()->setIdea("I'm a cat");
+	animal[NB_ANIMAL - 1]->getBrain()->printIdea();
+	(*animal[5]) = (*animal[NB_ANIMAL - 1]);
+	animal[5]->getBrain()->printIdea();
+	animal[NB_ANIMAL - 1]->getBrain()->setIdea("I'm a flying cat");
+	animal[NB_ANIMAL - 1]->getBrain()->printIdea();
+	animal[5]->getBrain()->printIdea();
+
+	std::cout << std::endl;
+	for (int i = 0; i < NB_ANIMAL; i++)
+	{
+		delete animal[i];
+		std::cout << std::endl;
+	}
+
 	return (0);
 }

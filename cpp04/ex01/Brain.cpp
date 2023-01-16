@@ -12,14 +12,6 @@ Brain::Brain(const Brain& brain)
 	(*this) = brain;
 }
 
-Brain::Brain(const std::string ideas[100])
-{
-	std::cout << "Copy String Constructor Brain" << std::endl;
-	this->_ideas = new std::string[100];
-	for (int i = 0; i < 100; i++)
-		this->_ideas[i] = ideas[i];
-}
-
 Brain::~Brain(void)
 {
 	std::cout << "Destructor Brain" << std::endl;
@@ -30,7 +22,10 @@ Brain& Brain::operator=(const Brain& brain)
 {
 	std::cout << "Copy Operator Brain" << std::endl;
 	if (this != (&brain))
-		(*this) = Brain(brain._ideas);
+	{
+		for (int i = 0; i < 100; i++)
+			(*this)._ideas[i] = brain._ideas[i];
+	}
 	return (*this);
 }
 

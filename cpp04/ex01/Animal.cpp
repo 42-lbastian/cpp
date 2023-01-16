@@ -33,13 +33,3 @@ std::string Animal::getType(void) const
 {
 	return (this->_type);
 }
-
-void Animal::setIdea(std::string idea)
-{
-	this->_brain->setIdea(idea);
-}
-
-void Animal::printIdea(void) const
-{
-	this->_brain->printIdea();
-}
