@@ -5,14 +5,14 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 
-class Cat: public Animal
+class Cat: public AAnimal
 {
 	public:
 		Cat(void);
 		Cat(const Cat& cat);
 		~Cat(void);
 		Cat& operator=(const Cat& cat);
-		Animal& operator=(const Animal& animal);
+		AAnimal& operator=(const AAnimal& animal);
 		void makeSound(void) const;
 		Brain* getBrain(void) const;
 	

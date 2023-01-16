@@ -30,7 +30,7 @@ Cat& Cat::operator=(const Cat& cat)
 	return (*this);
 }
 
-Animal& Cat::operator=(const Animal& animal)
+AAnimal& Cat::operator=(const AAnimal& animal)
 {
 	std::cout << "Copy Operator Cat" << std::endl;
 	if (this != &animal)

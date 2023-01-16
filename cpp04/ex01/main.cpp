@@ -8,7 +8,7 @@
 
 int main(void)
 {
-	Animal* animal[NB_ANIMAL];
+	AAnimal* animal[NB_ANIMAL];
 
 	for (int i = 0; i < NB_ANIMAL; i++)
 	{
@@ -20,7 +20,7 @@ int main(void)
 	}
 	for (int i = 0; i < NB_ANIMAL; i++)
 	{
-		std::cout << "Animal nb " << i << " ";
+		std::cout << "AAnimal nb " << i << " ";
 		animal[i]->makeSound();
 	}
 

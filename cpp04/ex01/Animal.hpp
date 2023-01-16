@@ -4,13 +4,13 @@
 #include <iostream>
 #include "Brain.hpp"
 
-class Animal
+class AAnimal
 {
 	public:
-		Animal(void);
-		Animal(const Animal& animal);
-		virtual ~Animal(void);
-		virtual Animal& operator=(const Animal& animal);
+		AAnimal(void);
+		AAnimal(const AAnimal& animal);
+		virtual ~AAnimal(void);
+		virtual AAnimal& operator=(const AAnimal& animal);
 		virtual void makeSound(void) const;
 		std::string getType(void) const;
 		virtual Brain* getBrain(void) const = 0;
