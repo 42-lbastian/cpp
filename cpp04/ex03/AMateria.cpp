@@ -1,29 +1,29 @@
-#include "Materia.hpp"
+#include "AMateria.hpp"
 
 AMateria::AMateria(void)
 {
-	std::cout << "Default Constructor Materia" << std::endl;
+	std::cout << "Default Constructor AMateria" << std::endl;
 }
 
 AMateria::AMateria(const std::string& type):_type(type)
 {
-	std::cout << "Type Constructor Materia" << std::endl;
+	std::cout << "Type Constructor AMateria" << std::endl;
 }
 
 AMateria::AMateria(const AMateria& materia)
 {
-	std::cout << "Copy Constructor Materia" << std::endl;
+	std::cout << "Copy Constructor AMateria" << std::endl;
 	(*this) = materia;
 }
 
 AMateria::~AMateria(void)
 {
-	std::cout << "Destructor Materia" << std::endl;
+	std::cout << "Destructor AMateria" << std::endl;
 }
 
 AMateria& AMateria::operator=(const AMateria& materia)
 {
-	std::cout << "Copy Operator Materia" << std::endl;
+	std::cout << "Copy Operator AMateria" << std::endl;
 	if (this != &materia)
 		this->_type = materia._type;
 	return (*this);

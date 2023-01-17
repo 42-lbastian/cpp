@@ -1,13 +1,17 @@
 NAME = interface
 
 SRCS =	main.cpp \
-		Materia.cpp \
+		AMateria.cpp \
+		Character.cpp \
+		Ice.cpp \
+		Cure.cpp \
+		MateriaSource.cpp \
 
 OBJS = ${SRCS:.cpp=.o}
 
 CC = c++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 
 FFLAGS = -g -fsanitize=address
 
