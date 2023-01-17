@@ -40,5 +40,10 @@ int main(void)
 		std::cout << std::endl;
 	}
 
+	Dog basic;
+	{
+		Dog tmp = basic;
+	}
+
 	return (0);
 }
