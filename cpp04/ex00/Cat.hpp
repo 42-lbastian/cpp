@@ -9,7 +9,7 @@ class Cat: public Animal
 	public:
 		Cat(void);
 		Cat(const Cat& cat);
-		virtual ~Cat(void);
+		~Cat(void);
 		Cat& operator=(const Cat& cat);
 		void makeSound(void) const;
 };

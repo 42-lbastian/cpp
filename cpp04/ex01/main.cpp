@@ -32,17 +32,16 @@ int main(void)
 	animal[NB_ANIMAL - 1]->getBrain()->setIdea("I'm a flying cat");
 	animal[NB_ANIMAL - 1]->getBrain()->printIdea();
 	animal[5]->getBrain()->printIdea();
+	Dog basic;
+	{
+		Dog tmp = basic;
+	}
 
 	std::cout << std::endl;
 	for (int i = 0; i < NB_ANIMAL; i++)
 	{
 		delete animal[i];
 		std::cout << std::endl;
-	}
-
-	Dog basic;
-	{
-		Dog tmp = basic;
 	}
 
 	return (0);
