@@ -32,6 +32,18 @@ int main(void)
 	animal[NB_ANIMAL - 1]->getBrain()->setIdea("I'm a flying cat");
 	animal[NB_ANIMAL - 1]->getBrain()->printIdea();
 	animal[5]->getBrain()->printIdea();
+	
+	std::cout << std::endl;
+	Dog basic;
+	{
+		Dog tmp = basic;
+	}
+
+	std::cout << std::endl;
+	Cat basic2;
+	{
+		Cat tmp2 = basic2;
+	}
 
 	std::cout << std::endl;
 	for (int i = 0; i < NB_ANIMAL; i++)

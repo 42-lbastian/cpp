@@ -24,7 +24,8 @@ Cat& Cat::operator=(const Cat& cat)
 	std::cout << "Copy Operator Cat" << std::endl;
 	if (this != &cat)
 	{
-		this->_brain = cat._brain;
+		this->_brain = new Brain();
+		(*this->_brain) = (*cat._brain);
 		this->_type = cat._type;
 	}
 	return (*this);

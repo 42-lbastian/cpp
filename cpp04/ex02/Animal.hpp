@@ -8,7 +8,7 @@ class AAnimal
 {
 	public:
 		virtual ~AAnimal(void);
-		virtual AAnimal& operator=(const AAnimal& animal) = 0;
+		virtual AAnimal& operator=(const AAnimal& animal);
 		virtual void makeSound(void) const = 0;
 		std::string getType(void) const;
 		virtual Brain* getBrain(void) const = 0;
@@ -17,5 +17,9 @@ class AAnimal
 		std::string _type;
 	
 };
+
+
+
+
 
 #endif

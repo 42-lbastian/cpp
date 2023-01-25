@@ -24,7 +24,8 @@ Dog& Dog::operator=(const Dog& dog)
 	std::cout << "Copy Operator Dog" << std::endl;
 	if (this != &dog)
 	{
-		this->_brain = dog._brain;
+		this->_brain = new Brain();
+		(*this->_brain) = (*dog._brain);
 		this->_type = dog._type;
 	}
 	return (*this);

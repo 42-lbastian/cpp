@@ -2,8 +2,8 @@
 
 Brain::Brain(void)
 {
-	this->_ideas = new std::string[100];
 	std::cout << "Default Constructor Brain" << std::endl;
+	this->_ideas = new std::string[100];
 }
 
 Brain::Brain(const Brain& brain)
