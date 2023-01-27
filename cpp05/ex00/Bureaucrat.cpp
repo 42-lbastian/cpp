@@ -1,6 +1,6 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(void)
+Bureaucrat::Bureaucrat(void):_name("Unknown")
 {
 	std::cout << "Default Constructor Bureaucrat" << std::endl;
 }
@@ -23,6 +23,7 @@ Bureaucrat::~Bureaucrat(void)
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& bureaucrat)
 {
+	std::cout << "Copy operator Bureaucrat" << std::endl;
 	if (this != &bureaucrat)
 		this->_grade = bureaucrat._grade;
 	return ((*this));

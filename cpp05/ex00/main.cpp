@@ -3,6 +3,7 @@
 int main(void)
 {
 	Bureaucrat toto(2, "Toto");
+	Bureaucrat tutu(toto); 
 
 	std::cout << toto << std::endl;
 	try
@@ -29,4 +30,8 @@ int main(void)
 		std::cout << low.what() << std::endl;
 	}
 	std::cout << tata << std::endl;
+	std::cout << std::endl;
+
+
+	std::cout << tutu << std::endl;
 }
