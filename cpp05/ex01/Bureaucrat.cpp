@@ -72,7 +72,7 @@ void Bureaucrat::signForm(Form& form)
 	if (form.getIsSigned() == true)
 		std::cout << this->_name << " signed " << form.getName() << std::endl;
 	else
-		std::cout << this->_name << " couldn't sign " << form.getName() << " because his grade is too low" << std::endl;
+		std::cout << this->_name << " couldn't sign " << form.getName() << " because grade too low" << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& os, Bureaucrat& bureaucrat)
