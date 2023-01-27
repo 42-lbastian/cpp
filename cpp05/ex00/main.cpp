@@ -32,6 +32,25 @@ int main(void)
 	std::cout << tata << std::endl;
 	std::cout << std::endl;
 
-
 	std::cout << tutu << std::endl;
+
+	std::cout << std::endl;
+	try
+	{
+		Bureaucrat titi(0, "Titi");
+	}
+	catch (Bureaucrat::GradeTooHighException& high)
+	{
+		std::cout << high.what() << std::endl;
+	}
+
+	try
+	{
+		Bureaucrat otot(151, "Titi");
+	}
+	catch (Bureaucrat::GradeTooLowException& high)
+	{
+		std::cout << high.what() << std::endl;
+	}
+
 }

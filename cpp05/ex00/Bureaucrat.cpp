@@ -5,12 +5,18 @@ Bureaucrat::Bureaucrat(void):_name("Unknown")
 	std::cout << "Default Constructor Bureaucrat" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(int grade, std::string name): _grade(grade), _name(name)
+Bureaucrat::Bureaucrat(int grade, std::string name): _name(name)
 {
 	std::cout << "Arg Constructor Bureaucrat" << std::endl;
+	if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	else if (grade > LOWESTGRADE)
+		throw Bureaucrat::GradeTooLowException();
+	else
+		this->_grade = grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& bureaucrat)
+Bureaucrat::Bureaucrat(const Bureaucrat& bureaucrat):_name(bureaucrat.getName())
 {
 	std::cout << "Copy Constructor Bureaucrat" << std::endl;
 	(*this) = bureaucrat;
@@ -42,7 +48,10 @@ const std::string Bureaucrat::getName(void) const
 void Bureaucrat::incrGrade(void)
 {
 	if (this->_grade > 1)
+	{
 		this->_grade--;
+		std::cout << this->_name << " is now grade " << this->_grade << std::endl;
+	}
 	else
 		throw Bureaucrat::GradeTooHighException();
 }
@@ -50,7 +59,10 @@ void Bureaucrat::incrGrade(void)
 void Bureaucrat::decrGrade(void)
 {
 	if (this->_grade < LOWESTGRADE)
+	{
 		this->_grade++;
+		std::cout << this->_name << " is now grade " << this->_grade << std::endl;
+	}
 	else
 		throw Bureaucrat::GradeTooLowException();
 }
