@@ -2,11 +2,11 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 
 #define LOWESTGRADE 150
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -20,7 +20,8 @@ class Bureaucrat
 		const std::string getName(void) const;
 		void              incrGrade(void);
 		void              decrGrade(void);
-		void              signForm(Form& form);
+		void              signForm(AForm& form);
+		void              executeForm(const AForm& form);
 
 	private:
 		int               _grade;

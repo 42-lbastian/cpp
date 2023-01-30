@@ -1,0 +1,52 @@
+#include "ShrubberyCreationForm.hpp"
+
+ShrubberyCreationForm::ShrubberyCreationForm(void)
+{
+	std::cout << "Default Constructor ShrubberyCreationForm" << std::endl;
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& shrubberyCreationForm)
+{
+	std::cout << "Copy Constructor ShrubberyCreationForm" << std::endl;
+	(*this) = shrubberyCreationForm;
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target):_target(target)
+{
+	std::cout << "Arg Constructor ShrubberyCreationForm" << std::endl;
+}
+
+ShrubberyCreationForm::~ShrubberyCreationForm(void)
+{
+	std::cout << "Destructor ShrubberyCreationForm" << std::endl;
+}
+
+ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& shrubberyCreationForm)
+{
+	if (this != &shrubberyCreationForm)
+		this->_target = shrubberyCreationForm._target;
+	return ((*this));
+}
+
+void ShrubberyCreationForm::exec(void)
+{
+	std::ofstream file_out;
+
+	file_out.open((this->_target + "_shrubbery").c_str(), std::ios::out | std::ios::trunc);
+	file_out << "\033[1;32m";
+	file_out << "          *" << std::endl;
+	file_out << "         *|*" << std::endl;
+	file_out << "        *\\|/*" << std::endl;
+	file_out << "      *\\**|**/*" << std::endl;
+	file_out << "    *\\***\\|/***/*" << std::endl;
+	file_out << "     **\\**|**/**" << std::endl;
+	file_out << "    *\\***\\|/***/*" << std::endl;
+	file_out << "  *\\***\\**|**/***/*" << std::endl;
+	file_out << "    *\\***\\|/***/*" << std::endl;
+	file_out << "  *****\\**|**/*****" << std::endl;
+	file_out << "*********\\|/*********" << std::endl;
+	file_out << "         _|_" << std::endl;
+	file_out << "\033[0m";
+
+	file_out.close();
+}

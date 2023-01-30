@@ -1,48 +1,20 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main(void)
 {
 	Bureaucrat toto(3, "Toto");
-	Form form(2, 1, "Formulaire");
-	std::cout << form << std::endl;
-	form.beSigned(toto);
-	std::cout << form << std::endl;
-	toto.incrGrade();
-	form.beSigned(toto);
-	std::cout << form << std::endl;
+	ShrubberyCreationForm shrub("shrubi2");
+	RobotomyRequestForm robototo("Robototo");
+	PresidentialPardonForm pardon("Toto");
+
+	std::cout << std::endl;
+	shrub.exec();
+	robototo.exec();
+	pardon.exec();
 	std::cout << std::endl;
 
-	try
-	{
-		Form form2(0, 1, "Formulaire");
-	}
-	catch (Form::GradeTooHighException& high)
-	{
-		std::cout << high.what() << std::endl;
-	}
-	try
-	{
-		Form form2(1, 0, "Formulaire");
-	}
-	catch (Form::GradeTooHighException& high)
-	{
-		std::cout << high.what() << std::endl;
-	}
-	try
-	{
-		Form form2(151, 1, "Formulaire");
-	}
-	catch (Form::GradeTooLowException& low)
-	{
-		std::cout << low.what() << std::endl;
-	}
-	try
-	{
-		Form form2(15, 151, "Formulaire");
-	}
-	catch (Form::GradeTooLowException& low)
-	{
-		std::cout << low.what() << std::endl;
-	}
 }
