@@ -6,10 +6,10 @@ int main(void)
 	Bureaucrat toto(3, "Toto");
 	Form form(2, 1, "Formulaire");
 	std::cout << form << std::endl;
-	form.beSigned(toto);
+	toto.signForm(form);
 	std::cout << form << std::endl;
 	toto.incrGrade();
-	form.beSigned(toto);
+	toto.signForm(form);
 	std::cout << form << std::endl;
 	std::cout << std::endl;
 

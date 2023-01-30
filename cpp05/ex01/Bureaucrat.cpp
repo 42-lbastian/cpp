@@ -69,10 +69,15 @@ void Bureaucrat::decrGrade(void)
 
 void Bureaucrat::signForm(Form& form)
 {
-	if (form.getIsSigned() == true)
+	try
+	{
+		form.beSigned((*this));
 		std::cout << this->_name << " signed " << form.getName() << std::endl;
-	else
+	}
+	catch (Form::GradeTooLowException& low)
+	{
 		std::cout << this->_name << " couldn't sign " << form.getName() << " because grade too low" << std::endl;
+	}
 }
 
 std::ostream& operator<<(std::ostream& os, Bureaucrat& bureaucrat)

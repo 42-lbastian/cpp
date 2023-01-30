@@ -55,20 +55,10 @@ bool Form::getIsSigned(void) const
 
 void Form::beSigned(Bureaucrat& bureaucrat)
 {
-	try
-	{
-		if (bureaucrat.getGrade() > this->_grade_to_sign)
-			throw Form::GradeTooLowException();
-		else
-		{
-			this->_is_signed = true;
-			bureaucrat.signForm((*this));
-		}
-	}
-	catch (Form::GradeTooLowException& low)
-	{
-		bureaucrat.signForm((*this));
-	}
+	if (bureaucrat.getGrade() > this->_grade_to_sign)
+		throw Form::GradeTooLowException();
+	else
+		this->_is_signed = true;
 }
 
 std::ostream& operator<<(std::ostream& o, Form& form)
