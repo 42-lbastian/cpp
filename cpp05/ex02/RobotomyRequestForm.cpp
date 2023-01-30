@@ -23,6 +23,7 @@ RobotomyRequestForm::~RobotomyRequestForm(void)
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& robotomyRequestForm)
 {
+	std::cout << "Copy Operator RobotomyRequestForm" << std::endl;
 	if (this != &robotomyRequestForm)
 		this->_target = robotomyRequestForm._target;
 	return ((*this));

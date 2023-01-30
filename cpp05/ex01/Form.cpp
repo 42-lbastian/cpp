@@ -28,6 +28,7 @@ Form::~Form(void)
 
 Form& Form::operator=(const Form& form)
 {
+	std::cout << "Copy Operator Form" << std::endl;
 	if (this != (&form))
 		this->_is_signed = form.getIsSigned();
 	return (*this);

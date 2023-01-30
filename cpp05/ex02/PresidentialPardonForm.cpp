@@ -23,6 +23,7 @@ PresidentialPardonForm::~PresidentialPardonForm(void)
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& presidentialPardonForm)
 {
+	std::cout << "Copy Operator PresidentialPardonForm" << std::endl;
 	if (this != &presidentialPardonForm)
 		this->_target = presidentialPardonForm._target;
 	return ((*this));

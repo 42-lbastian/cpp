@@ -23,6 +23,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void)
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& shrubberyCreationForm)
 {
+	std::cout << "Copy Operator ShrubberyCreationForm" << std::endl;
 	if (this != &shrubberyCreationForm)
 		this->_target = shrubberyCreationForm._target;
 	return ((*this));
