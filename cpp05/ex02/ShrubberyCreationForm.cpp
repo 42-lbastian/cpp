@@ -1,6 +1,6 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(void)
+ShrubberyCreationForm::ShrubberyCreationForm(void): AForm(145, 137, "Shrubbery")
 {
 	std::cout << "Default Constructor ShrubberyCreationForm" << std::endl;
 }
@@ -11,7 +11,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& shrubb
 	(*this) = shrubberyCreationForm;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target):_target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target):AForm(145, 137, target + " Form"), _target(target)
 {
 	std::cout << "Arg Constructor ShrubberyCreationForm" << std::endl;
 }
@@ -28,25 +28,32 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	return ((*this));
 }
 
-void ShrubberyCreationForm::exec(void)
+void ShrubberyCreationForm::execute(const Bureaucrat& bureaucrat)
 {
-	std::ofstream file_out;
-
-	file_out.open((this->_target + "_shrubbery").c_str(), std::ios::out | std::ios::trunc);
-	file_out << "\033[1;32m";
-	file_out << "          *" << std::endl;
-	file_out << "         *|*" << std::endl;
-	file_out << "        *\\|/*" << std::endl;
-	file_out << "      *\\**|**/*" << std::endl;
-	file_out << "    *\\***\\|/***/*" << std::endl;
-	file_out << "     **\\**|**/**" << std::endl;
-	file_out << "    *\\***\\|/***/*" << std::endl;
-	file_out << "  *\\***\\**|**/***/*" << std::endl;
-	file_out << "    *\\***\\|/***/*" << std::endl;
-	file_out << "  *****\\**|**/*****" << std::endl;
-	file_out << "*********\\|/*********" << std::endl;
-	file_out << "         _|_" << std::endl;
-	file_out << "\033[0m";
-
-	file_out.close();
+	if (bureaucrat.getGrade() > this->getGradeExec())
+		throw AForm::GradeTooLowException();
+	else if (this->getIsSigned() == false)
+		throw AForm::NotSigned();
+	else
+	{
+		std::ofstream file_out;
+	
+		file_out.open((this->_target + "_shrubbery").c_str(), std::ios::out | std::ios::trunc);
+		file_out << "\033[1;32m";
+		file_out << "          *" << std::endl;
+		file_out << "         *|*" << std::endl;
+		file_out << "        *\\|/*" << std::endl;
+		file_out << "      *\\**|**/*" << std::endl;
+		file_out << "    *\\***\\|/***/*" << std::endl;
+		file_out << "     **\\**|**/**" << std::endl;
+		file_out << "    *\\***\\|/***/*" << std::endl;
+		file_out << "  *\\***\\**|**/***/*" << std::endl;
+		file_out << "    *\\***\\|/***/*" << std::endl;
+		file_out << "  *****\\**|**/*****" << std::endl;
+		file_out << "*********\\|/*********" << std::endl;
+		file_out << "         _|_" << std::endl;
+		file_out << "\033[0m";
+	
+		file_out.close();
+	}
 }

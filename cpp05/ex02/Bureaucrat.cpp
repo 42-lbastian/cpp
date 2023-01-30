@@ -80,16 +80,20 @@ void Bureaucrat::signForm(AForm& form)
 	}
 }
 
-void Bureaucrat::executeForm(const AForm& form)
+void Bureaucrat::executeForm(AForm& form)
 {
 	try
 	{
-		form.executed((*this));
+		form.execute((*this));
 		std::cout << this->_name << " executed " << form.getName() << std::endl;	
 	}
-	catch (AForm::GradeTooLowException& low)
+	catch (AForm::GradeTooLowException)
 	{
-		std::cout << "Grade too low" << std::endl;
+		std::cout << "Grade too low to execute" << std::endl;
+	}
+	catch (AForm::NotSigned)
+	{
+		std::cout << form.getName() << " not signed" << std::endl;
 	}
 }
 

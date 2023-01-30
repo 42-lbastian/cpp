@@ -19,7 +19,7 @@ class AForm
 		int               getGradeExec(void) const;
 		bool              getIsSigned(void) const;
 		void              beSigned(Bureaucrat& bureaucrat);
-		void              execute(const Bureaucrat& bureaucrat);
+		virtual void      execute(const Bureaucrat& bureaucrat) = 0;
 
 	private:
 		const std::string _name;
@@ -42,6 +42,14 @@ class AForm
 				virtual const char* what() const throw()
 				{
 					return ("Grade is too low");
+				}
+		};
+		class NotSigned: public std::exception
+		{
+			public:
+				virtual const char* what() const throw()
+				{
+					return ("Not Signed");
 				}
 		};
 };

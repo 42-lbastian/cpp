@@ -1,6 +1,6 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm(void)
+RobotomyRequestForm::RobotomyRequestForm(void): AForm(72, 45, "Robotomy")
 {
 	std::cout << "Default Constructor RobotomyRequestForm" << std::endl;
 }
@@ -11,7 +11,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& robotomyRequ
 	(*this) = robotomyRequestForm;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target):_target(target)
+RobotomyRequestForm::RobotomyRequestForm(std::string target):AForm(72, 45, target + " Form"), _target(target)
 {
 	std::cout << "Arg Constructor RobotomyRequestForm" << std::endl;
 }
@@ -28,11 +28,18 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& r
 	return ((*this));
 }
 
-void RobotomyRequestForm::exec(void)
+void RobotomyRequestForm::execute(const Bureaucrat& bureaucrat)
 {
-	srand (time(NULL));
-	if ((rand() % 2) == 1)
-		std::cout << this->_target << " has been robotomized" << std::endl;
+	if (bureaucrat.getGrade() > this->getGradeExec())
+		throw AForm::GradeTooLowException();
+	else if (this->getIsSigned() == false)
+		throw AForm::NotSigned();
 	else
-		std::cout << "the robotomy failed" << std::endl;
+	{
+		srand (time(NULL));
+		if ((rand() % 2) == 1)
+			std::cout << this->_target << " has been robotomized" << std::endl;
+		else
+			std::cout << "the robotomy failed" << std::endl;
+	}
 }

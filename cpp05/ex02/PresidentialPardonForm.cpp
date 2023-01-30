@@ -1,6 +1,6 @@
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm(void)
+PresidentialPardonForm::PresidentialPardonForm(void): AForm(25, 5, "Presidential Pardon")
 {
 	std::cout << "Default Constructor PresidentialPardonForm" << std::endl;
 }
@@ -11,7 +11,7 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& pre
 	(*this) = presidentialPardonForm;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target):_target(target)
+PresidentialPardonForm::PresidentialPardonForm(std::string target):AForm(25, 5, target + " Form"), _target(target)
 {
 	std::cout << "Arg Constructor PresidentialPardonForm" << std::endl;
 }
@@ -28,7 +28,14 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 	return ((*this));
 }
 
-void PresidentialPardonForm::exec(void)
+void PresidentialPardonForm::execute(const Bureaucrat& bureaucrat)
 {
-	std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+	if (bureaucrat.getGrade() > this->getGradeExec())
+		throw AForm::GradeTooLowException();
+	else if (this->getIsSigned() == false)
+		throw AForm::NotSigned();
+	else
+	{
+		std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+	}
 }
