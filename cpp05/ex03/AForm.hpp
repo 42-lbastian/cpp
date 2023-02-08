@@ -12,7 +12,7 @@ class AForm
 		AForm(void);
 		AForm(const int grade_to_sign, const int grade_to_execute, const std::string name);
 		AForm(const AForm& form);
-		~AForm(void);
+		virtual ~AForm(void);
 		AForm& operator=(const AForm& form);
 		const std::string getName(void) const;
 		int               getGradeSign(void) const;

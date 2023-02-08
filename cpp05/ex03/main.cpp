@@ -3,35 +3,27 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int main(void)
 {
+	Intern titi;
+	AForm* form;
 	Bureaucrat toto(3, "Toto");
 	Bureaucrat otot(150, "Otot");
-	ShrubberyCreationForm shrub("shrubi2");
-	RobotomyRequestForm robototo("Robototo");
-	PresidentialPardonForm pardon("Toto");
+	std::cout << std::endl;
+
+	form = titi.makeform("Shlubudu", "house");
+	std::cout << std::endl;
+	form = titi.makeform("Shrubbery Form", "house");
+	std::cout << std::endl;
 	
+	toto.executeForm(*form);
+	otot.signForm(*form);
+	toto.signForm(*form);
+	otot.executeForm(*form);
+	toto.executeForm(*form);
 	std::cout << std::endl;
-	toto.executeForm(shrub);
-	otot.signForm(shrub);
-	toto.signForm(shrub);
-	otot.executeForm(shrub);
-	toto.executeForm(shrub);
-	std::cout << std::endl;
-
-	toto.executeForm(robototo);
-	otot.signForm(robototo);
-	toto.signForm(robototo);
-	otot.executeForm(robototo);
-	toto.executeForm(robototo);
-	std::cout << std::endl;
-
-	toto.executeForm(pardon);
-	otot.signForm(pardon);
-	toto.signForm(pardon);
-	otot.executeForm(pardon);
-	toto.executeForm(pardon);
-	std::cout << std::endl;
-
+	
+	delete form;
 }

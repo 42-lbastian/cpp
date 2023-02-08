@@ -2,6 +2,7 @@
 #define INTERN_HPP
 
 #include "AForm.hpp"
+#define NB_FORM 3
 
 class Intern
 {
