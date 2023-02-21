@@ -11,8 +11,6 @@ class Convert
 		Convert(const Convert& convert);
 		Convert& operator=(const Convert& convert);
 		static void convert(const std::string str);
-	private:
-		void str_to_char(const std::string str);
 };
 
 

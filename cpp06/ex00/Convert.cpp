@@ -23,18 +23,25 @@ Convert& Convert::operator=(const Convert& convert)
 	return (*this);
 }
 
+void str_to_char(const std::string str)
+{
+//	if (str.length() > 1)
+//		std::cout << "char impossible" << std::endl;
+//	else
+//	{
+		const char& c = reinterpret_cast<const char&>(str);
+		if (c > 0 && c < ' ')
+		{
+			std::cout << "Non displayable" << std::endl;
+			std::cout << c << std::endl;
+		}
+		else
+			std::cout << c << std::endl;
+//	}
+}
+
 void Convert::convert(const std::string str)
 {
-	std::cout << str << std::endl;
+	str_to_char(str);
 }
 
-void Convert::str_to_char(const std::string str)
-{
-	char c;
-
-	if (str.length() > 1)
-		std::cout << "char impossible" << std::endl;
-	else
-	{
-	}
-}
