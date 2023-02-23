@@ -4,7 +4,6 @@
 #include "C.hpp"
 #include <cstdlib>
 #include <ctime>
-#include <typeinfo>
 
 Base* generate(void)
 {
@@ -51,7 +50,7 @@ void identify(Base& p)
 		std::cout << "It's the class A" << std::endl;
 		(void)a;
 	}
-	catch (const std::bad_cast&)
+	catch (const std::exception&)
 	{
 		try
 		{
@@ -59,7 +58,7 @@ void identify(Base& p)
 			std::cout << "It's the class B" << std::endl;
 			(void)b;
 		}
-		catch (const std::bad_cast&)
+		catch (const std::exception&)
 		{
 			try
 			{
@@ -67,7 +66,7 @@ void identify(Base& p)
 				std::cout << "It's the class C" << std::endl;
 				(void)c;
 			}
-			catch (const std::bad_cast&)
+			catch (const std::exception&)
 			{	
 				std::cout << "Class unknown" << std::endl;
 			}
