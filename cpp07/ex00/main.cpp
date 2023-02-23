@@ -21,20 +21,20 @@ int main(void)
 	f1 = 42.21;
 	f2 = 21.42;
 
-	std::cout << "max between " << nb1 << " and " << nb2 << " is: " << max(nb1, nb2) << std::endl;
-	std::cout << "min between " << nb1 << " and " << nb2 << " is: " << min(nb1, nb2) << std::endl;
+	std::cout << "max(" << nb1 << ", " << nb2 << ") = " << max(nb1, nb2) << std::endl;
+	std::cout << "min(" << nb1 << ", " << nb2 << ") = " << min(nb1, nb2) << std::endl;
 	std::cout << std::endl;
 
-	std::cout << "max between " << char1 << " and " << char2 << " is: " << max(char1, char2) << std::endl;
-	std::cout << "min between " << char1 << " and " << char2 << " is: " << min(char1, char2) << std::endl;
+	std::cout << "max(" << char1 << ", " << char2 << ") = " << max(char1, char2) << std::endl;
+	std::cout << "min(" << char1 << ", " << char2 << ") = " << min(char1, char2) << std::endl;
 	std::cout << std::endl;
 
-	std::cout << "max between " << str1 << " and " << str2 << " is: " << max(str1, str2) << std::endl;
-	std::cout << "min between " << str1 << " and " << str2 << " is: " << min(str1, str2) << std::endl;
+	std::cout << "max(" << str1 << ", " << str2 << ") = " << max(str1, str2) << std::endl;
+	std::cout << "min(" << str1 << ", " << str2 << ") = " << min(str1, str2) << std::endl;
 	std::cout << std::endl;
 
-	std::cout << "max between " << f1 << " and " << f2 << " is: " << max(f1, f2) << std::endl;
-	std::cout << "min between " << f1 << " and " << f2 << " is: " << min(f1, f2) << std::endl;
+	std::cout << "max(" << f1 << ", " << f2 << ") = " << max(f1, f2) << std::endl;
+	std::cout << "min(" << f1 << ", " << f2 << ") = " << min(f1, f2) << std::endl;
 	std::cout << "--------------------------------------" << std::endl;
 
 	std::cout << "Nb1 is " << nb1 << " Nb2 is " << nb2 << std::endl;
