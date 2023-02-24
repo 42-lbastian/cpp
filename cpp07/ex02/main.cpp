@@ -9,16 +9,19 @@ int main(int argc, char **argv)
 	if (argc == 1)
 	{
 		Array<int> array_i1(5);
+		Array<int> array_idef;
 		Array<int> array_icpy(array_i1);
-		std::cout << array_i1 << std::endl;
+		std::cout << "Size of default array: " << array_idef.size() << std::endl;
+		std::cout << "Size of arg array (5): " << array_i1.size() << std::endl;
+		std::cout << "Content of array_i1: " << array_i1 << std::endl;
 		array_i1[0] = 13;
 		Array<int> array_icpy2(array_i1);
 		array_i1[2] = 4;
-		std::cout << array_i1 << std::endl;
-		std::cout << array_icpy << std::endl;
-		std::cout << array_icpy2 << std::endl;
+		std::cout << "Content of array_i1: " << array_i1 << std::endl;
+		std::cout << "Content of array_icpy: " << array_icpy << std::endl;
+		std::cout << "Content of array_icpy2: " << array_icpy2 << std::endl;
 		array_icpy = array_i1;
-		std::cout << array_icpy << std::endl;
+		std::cout << "Content of array_icpy: " << array_icpy << std::endl;
 		try
 		{
 			std::cout << array_i1[-1] << std::endl;
@@ -35,18 +38,34 @@ int main(int argc, char **argv)
 		{
 			std::cout << "Index 12 Fail" << std::endl;
 		}
+		try
+		{
+			std::cout << array_idef[-1] << std::endl;
+		}
+		catch (std::exception&)
+		{
+			std::cout << "Index -1 Fail" << std::endl;
+		}
+		try
+		{
+			std::cout << array_idef[12] << std::endl;
+		}
+		catch (std::exception&)
+		{
+			std::cout << "Index 12 Fail" << std::endl;
+		}
 		std::cout << "-------------------------" << std::endl;
 
 
 		Array<char> array_c1(5);
 		Array<char> array_ccpy(array_c1);
-		std::cout << array_c1 << std::endl;
+		std::cout << "Content of array_c1: " << array_c1 << std::endl;
 		array_c1[0] = 'z';
 		Array<char> array_ccpy2(array_c1);
 		array_c1[2] = 'Z';
-		std::cout << array_c1 << std::endl;
-		std::cout << array_ccpy << std::endl;
-		std::cout << array_ccpy2 << std::endl;
+		std::cout << "Content of array_c1: " << array_c1 << std::endl;
+		std::cout << "Content of array_ccpy: " << array_ccpy << std::endl;
+		std::cout << "Content of array_ccpy2: " << array_ccpy2 << std::endl;
 		try
 		{
 			std::cout << array_c1[-1] << std::endl;
