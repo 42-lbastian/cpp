@@ -25,6 +25,7 @@ fsan: $(OBJS)
 
 clean:
 	rm -rf $(OBJS)
+	rm -rf $(DEPS)
 
 fclean: clean
 	rm -rf $(NAME)
