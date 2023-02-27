@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <ctime>
+#include <cstdlib>
 
 class Span
 {
@@ -14,8 +16,10 @@ class Span
 		~Span();
 		Span& operator=(const Span& span);
 		void addNumber(int nb);
+		void addNumber(std::vector<int>::iterator it, std::vector<int>::iterator ite);
 		int  shortestSpan(void);
 		int  longestSpan(void);
+		unsigned int getSize(void);
 	
 	private:
 		std::vector<int> _array;

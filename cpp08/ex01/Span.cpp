@@ -31,12 +31,29 @@ Span& Span::operator=(const Span& span)
 	return (*this);
 }
 
+unsigned int Span::getSize(void)
+{
+	return (this->_size);
+}
+
 void Span::addNumber(int nb)
 {
 	if (this->_array.size() >= this->_size)
 		throw std::exception();
 	else
 		this->_array.push_back(nb);
+}
+
+void Span::addNumber(std::vector<int>::iterator it, std::vector<int>::iterator ite)
+{
+	int size;
+
+	size = 0;
+	for (std::vector<int>::iterator it2 = it; it2 != ite; it2++)
+		size++;
+	if (this->_array.size() + size >= this->_size)
+		throw std::exception();	
+	this->_array.insert(this->_array.end(), it, ite);
 }
 
 int Span::shortestSpan(void)
