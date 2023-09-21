@@ -42,6 +42,7 @@ void Warlock::forgetSpell(std::string name)
 
 void Warlock::launchSpell(std::string name, ATarget& target)
 {
-	
-	this->spells.find(name)->second->launch(target);
+	std::map<std::string, ASpell*>::iterator it = this->spells.find(name);
+	if (it != this->spells.end())
+		it->second->launch(target);
 }
