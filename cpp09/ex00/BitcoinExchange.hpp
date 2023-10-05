@@ -2,6 +2,9 @@
 #define BITCOINEXCHANGE_HPP
 #include <list>
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#define DATABASE "data.csv"
 
 class Data
 {
