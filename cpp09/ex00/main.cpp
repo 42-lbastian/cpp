@@ -1,10 +1,14 @@
 #include "BitcoinExchange.hpp"
 
+
+
 void read_data(std::list<Data>& lst)
 {
 	(void)lst;
 	std::fstream sfile;
 	std::string str;
+	int date;
+	float amount;
 
 	sfile.open(DATABASE, std::ios::in);
 	if (sfile.is_open() == true)
@@ -17,10 +21,12 @@ void read_data(std::list<Data>& lst)
 			std::cout << str << std::endl;
 			std::getline(ss, str, '-');
 			std::cout << str << std::endl;
-			std::getline(ss, str, '-');
-			std::cout << str << std::endl;
 			std::getline(ss, str, ',');
 			std::cout << str << std::endl;
+			std::getline(ss, str, '\n');
+			std::cout << str << std::endl;
+			
+			//std::cout << ss.str() << std::endl;
 		}
 		sfile.close();
 	}
