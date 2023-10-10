@@ -4,26 +4,29 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <stdlib.h>
+#include <limits.h>
 #define DATABASE "data.csv"
 
 class Data
 {
 	public:
-		Data(int year, int month, int day, float amount);
+		Data(int year, int month, int day, double amount);
 		Data(const Data& data);
 		Data& operator=(const Data& data);
 		~Data(void);	
 		int getYear(void) const;
 		int getMonth(void) const;
 		int getDay(void) const;
-		float getAmount(void) const;
+		double getAmount(void) const;
+		void print(void) const;
 
 	private:
 		Data(void);
 		int _year;
 		int _month;
 		int _day;
-		float _amount;
+		double _amount;
 };
 
 #endif
