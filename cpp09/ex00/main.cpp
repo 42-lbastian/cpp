@@ -19,7 +19,7 @@ int ft_atoi(const std::string str, int& nb)
 	return (0);
 }
 
-int ft_atol(const std::string str, double& nb)
+int ft_atof(const std::string str, double& nb)
 {
 	int i;
 	int point;
@@ -64,25 +64,25 @@ int ft_read_data(std::list<Data>& lst)
 			std::getline(ss, str, '-');
 			if (ft_atoi(str, year))
 			{
-				std::cout << "Year error: " << ss.str() << std::endl;
+				std::cout << "Year Error: " << ss.str() << std::endl;
 				return (1);
 			}
 			std::getline(ss, str, '-');
 			if (ft_atoi(str, month))
 			{
-				std::cout << "Month error: " << ss.str() << std::endl;
+				std::cout << "Month Error: " << ss.str() << std::endl;
 				return (1);
 			}
 			std::getline(ss, str, ',');
 			if (ft_atoi(str, day))
 			{
-				std::cout << "Day error: " << ss.str() << std::endl;
+				std::cout << "Day Error: " << ss.str() << std::endl;
 				return (1);
 			}
 			std::getline(ss, str, '\n');
-			if (ft_atol(str, amount))
+			if (ft_atof(str, amount))
 			{
-				std::cout << "Amount error: " << ss.str() << std::endl;
+				std::cout << "Amount Error: " << ss.str() << std::endl;
 				return (1);
 			}
 			lst.push_back(Data(year, month, day, amount));
@@ -97,15 +97,44 @@ int ft_read_data(std::list<Data>& lst)
 	return (0);
 }
 
+int ft_count_leap_years(int year)
+{
+	int leap;
+
+	leap = 0;
+	for (int i = 1; i < year; i++)
+	{
+		if (year % 4 == 0)
+			leap++;
+	}
+	return (leap);
+}
+
+int ft_count_days(int year, int month, int day)
+{
+	int total;
+	int days_month[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+	total = (year - 1) * 365;
+	if (month > 2 || (month == 2 && day == 29))
+		total += ft_count_leap_years(year + 1);
+	else
+		total += ft_count_leap_years(year);
+	for (int i = 0; i < month; i++)
+		total += days_month[i];
+	total += day;
+	return (total);	
+}
+
 int main(int argc, char **argv)
 {
 	std::list<Data> lst;
+	if (argc != 2)
+		std::cout << "Argument Error" << std::endl;
 	if (ft_read_data(lst) == 0)
 	{
-		
+		std::cout << ft_count_days(2023, 7, 2) << std::endl;	
 	}
-	else
-		std::cout << "Error First Database File" << std::endl;
 		
 	
 	(void)argc;
