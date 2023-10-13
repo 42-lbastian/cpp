@@ -108,30 +108,6 @@ int ft_read_base_data(std::list<Data>& lst)
 	return (0);
 }
 
-int ft_count_leap_years(const int year)
-{
-	int leap;
-
-	leap = year / 4 - year / 100 + year / 400;
-	return (leap);
-}
-
-int ft_count_days(const int year, const int month, const int day)
-{
-	int total;
-	int days_month[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-	total = year * 365;
-	if (month > 2 || (month == 2 && day == 29))
-		total += ft_count_leap_years(year) ;
-	else
-		total += ft_count_leap_years(year - 1);
-	for (int i = 0; i < (month - 1); i++)
-		total += days_month[i];
-	total += day;
-	return (total);	
-}
-
 void ft_find_date(const int& year, const int& month, const int& day, const double& amount, 
 				std::list<Data> lst)
 {
@@ -140,24 +116,14 @@ void ft_find_date(const int& year, const int& month, const int& day, const doubl
 	it = lst.begin();
 	while (it != lst.end())
 	{
-		if (it->getYear() == year)
+		if (it->getYear() >= year && it->getMonth() >= month && it->getDay() >= day)
 			break;
 		it++;
 	}
-	while (it != lst.end())
-	{
-		if (it->getMonth() == month)
-			break;
-		it++;
-	}
-	while (it != lst.end())
-	{
-		if (it->getDay() == day)
-			break;
-		it++;
-	}
-	//it->print();
+	if (!(it->getYear() == year && it->getMonth() == month && it->getDay() == day))
+		it--;
 	std::cout << year << "-" << month << "-" << day << " => " << amount << " = " << amount * it->getAmount() << std::endl;
+
 }
 
 void ft_read_compare_data(char **argv, const std::list<Data>& lst)
@@ -207,6 +173,7 @@ void ft_read_compare_data(char **argv, const std::list<Data>& lst)
 			if (error == 0 && ft_check_date(year, month, day))
 			{
 				std::cout << "Date Invalid: " << ss.str() << std::endl;
+				error = 1;
 			}
 			if (error == 0)
 				ft_find_date(year, month, day, amount, lst);
