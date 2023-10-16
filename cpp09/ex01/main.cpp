@@ -14,7 +14,7 @@ bool ft_check_char(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!((str[i] >= '0' && str[i] <= '9') || str[i] == ' ' || 
+		if (!((str[i] >= '0' && str[i] <= '9') || str[i] == ' ' ||
 				ft_is_operator(str[i])))
 			return (false);
 		i++;
@@ -22,13 +22,23 @@ bool ft_check_char(char *str)
 	return (true);
 }
 
-void ft_calculate(const char oper, std::stack<int>& mystack)
+int ft_error_empty(void)
+{
+	std::cout << "Error Calculation" << std::endl;
+	return (1);
+}
+
+int ft_calculate(const char oper, std::stack<int>& mystack)
 {
 	int val1;
 	int val2;
 
+	if (mystack.empty() == true)
+		return (ft_error_empty());
 	val1 = mystack.top();
 	mystack.pop();
+	if (mystack.empty() == true)
+		return (ft_error_empty());
 	val2 = mystack.top();
 	mystack.pop();
 
@@ -40,6 +50,7 @@ void ft_calculate(const char oper, std::stack<int>& mystack)
 		mystack.push(val2 * val1);
 	if (oper == '/')
 		mystack.push(val2 / val1);
+	return (0);
 }
 
 int main(int argc, char  **argv)
@@ -58,10 +69,14 @@ int main(int argc, char  **argv)
 				if (isdigit(argv[1][i]) == true)
 					mystack.push((argv[1][i] - '0'));
 				if (ft_is_operator(argv[1][i]))
-					ft_calculate(argv[1][i], mystack);
+					if (ft_calculate(argv[1][i], mystack))
+						return (1);
 				i++;
 			}
-			std::cout << mystack.top();
+			if (mystack.size() == 1)
+				std::cout << mystack.top();
+			else
+				std::cout << "Invalid input" << std::endl;
 		}
 		else
 			std::cout << "Invalid char in input" << std::endl;
