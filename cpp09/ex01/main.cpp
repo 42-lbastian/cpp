@@ -66,7 +66,7 @@ int main(int argc, char  **argv)
 		{
 			while (argv[1][i])
 			{
-				if (isdigit(argv[1][i]) == true)
+				if (isdigit(argv[1][i]))
 					mystack.push((argv[1][i] - '0'));
 				if (ft_is_operator(argv[1][i]))
 					if (ft_calculate(argv[1][i], mystack))
