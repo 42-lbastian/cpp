@@ -17,6 +17,7 @@ class Warlock
 		void learnSpell(ASpell* aspell);
 		void forgetSpell(std::string name);
 		void launchSpell(std::string name, ATarget& target);
+		void printSpell(void);
 
 	private:
 		Warlock(void);

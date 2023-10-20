@@ -51,3 +51,11 @@ void Warlock::launchSpell(std::string name, ATarget& target)
 	if (it != this->spells.end())
 		it->second->launch(target);
 }
+
+void Warlock::printSpell(void)
+{
+	for (std::map<std::string, ASpell*>::iterator it = this->spells.begin(); it != this->spells.end(); it++)
+	{
+		std::cout << "Spells: " << it->first << " | " << it->second << std::endl;
+	}
+}
