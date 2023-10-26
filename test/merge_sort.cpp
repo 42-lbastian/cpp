@@ -3,52 +3,57 @@
 #include <iostream>
 
 
-void ft_merge(std::vector<int>& vect, int low, int hight)
+void ft_merge(std::vector<int>& vect, int low, int hight, int middle)
 {
-	std::vector<int>::iterator it_result;
+	std::vector<int> vect_temp;
 	int i;
 	int j;
 
-	std::cout << "H: " << hight << " L: " << low << std::endl;
-	for (std::vector<int>::iterator it = vect.begin(); it != vect.begin() + hight; it++)
-		std::cout << "Vect" << (*it) << std::endl;
-	std::cout << std::endl;
-	i = 0;
-	j = 0;
-	while (low < hight -1)
+	i = low;
+	j = middle + 1;
+	while (i <= middle && j <= hight)
 	{
-		if (vect.at(i) > vect.at(j))
+		if (vect[i] < vect[j])
 		{
-			std::cout << "Begin I:" << i << "Begin J:" << j << std::endl; 
-			iter_swap(vect.begin() + i, vect.begin() + j + hight);
-			i++;
+			vect_temp.push_back(vect[i]);
+				i++;
 		}
-		if (vect.at(i) <= vect.at(j))
+		else
 		{
-			std::cout << "Begin2 I: " << i << " Begin J: " << j << " low: "<< low << std::endl; 
+			vect_temp.push_back(vect[j]);
 			j++;
 		}
-		low++;
 	}
-	std::cout  << "---------------------" << std::endl;
+	while (i <= middle)
+	{
+		vect_temp.push_back(vect[i]);
+		i++;
+	}
+	while (j <= hight)
+	{
+		vect_temp.push_back(vect[j]);
+		j++;
+	}
+	for (int i = low; i <= hight; i++)
+		vect[i] = vect_temp[(i - low)];
 }
 
-std::vector<int> ft_merge_sort(std::vector<int> vect, int low, int hight)
+void ft_merge_sort(std::vector<int>& vect, int low, int hight)
 {
+	int middle;
+
 	if (hight > low)
 	{
-		ft_merge_sort(vect, low, hight / 2);
-		std::cout << "Hight Loop: " << hight << "low Loop: " << low << std::endl;
-		ft_merge_sort(vect, (low + hight) / 2 + 1 , hight);
-		ft_merge(vect, low, hight);
+		middle = (low + hight) / 2;
+		ft_merge_sort(vect, low, middle);
+		ft_merge_sort(vect, middle + 1 , hight);
+		ft_merge(vect, low, hight, middle);
 	}
-	return (vect);
 }
 
 int main()
 {
 
-	std::vector<int> result;
 	std::vector<int> vect;
 	vect.push_back(6);
 	vect.push_back(10);
@@ -58,11 +63,12 @@ int main()
 	vect.push_back(60);
 	vect.push_back(-1);
 	vect.push_back(0);
+	vect.push_back(11);
 	for (std::vector<int>::iterator it = vect.begin(); it != vect.end(); it++)
 		std::cout << (*it) << std::endl;
-	result = ft_merge_sort(vect, 0, 8)	;
+	ft_merge_sort(vect, 0, vect.size())	;
 	std::cout << "-------" << std::endl;
-	for (std::vector<int>::iterator it = result.begin(); it != result.end(); it++)
-		std::cout << "Merde: " << (*it) << std::endl;
+	for (std::vector<int>::iterator it = vect.begin(); it != vect.end(); it++)
+		std::cout << "Sort: " << (*it) << std::endl;
 	return (0);
 }
