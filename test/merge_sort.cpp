@@ -11,6 +11,7 @@ void ft_merge(std::vector<int>& vect, int low, int hight, int middle)
 
 	i = low;
 	j = middle + 1;
+	std::cout << "I: " << i << " J: " << j << std::endl;
 	while (i <= middle && j <= hight)
 	{
 		if (vect[i] < vect[j])
@@ -55,18 +56,13 @@ int main()
 {
 
 	std::vector<int> vect;
-	vect.push_back(6);
-	vect.push_back(10);
 	vect.push_back(1);
-	vect.push_back(5);
-	vect.push_back(13);
-	vect.push_back(60);
-	vect.push_back(-1);
-	vect.push_back(0);
-	vect.push_back(11);
+	vect.push_back(23);
+	vect.push_back(9);
+	vect.push_back(4);
 	for (std::vector<int>::iterator it = vect.begin(); it != vect.end(); it++)
 		std::cout << (*it) << std::endl;
-	ft_merge_sort(vect, 0, vect.size())	;
+	ft_merge_sort(vect, 0, vect.size() - 1)	;
 	std::cout << "-------" << std::endl;
 	for (std::vector<int>::iterator it = vect.begin(); it != vect.end(); it++)
 		std::cout << "Sort: " << (*it) << std::endl;
