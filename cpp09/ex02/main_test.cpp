@@ -31,6 +31,63 @@ int ft_strlen(char *str)
 		i++;
 	return (i);
 }
+////////////
+
+
+
+void ft_merge(std::vector<std::vector<int> >& vect, std::vector<int>& big_res,
+		std::vector<int>& low_res, int low, int hight, int middle)
+{
+	int i;
+	int j;
+
+	i = low;
+	j = middle + 1;
+	while (i <= middle && j <= hight)
+	{
+		if (vect[i][0] < vect[j][0])
+		{
+			big_res.push_back(vect[i][0]);
+			low_res.push_back(vect[i][1]);
+			i++;
+		}
+		else
+		{
+			big_res.push_back(vect[j][0]);
+			low_res.push_back(vect[j][1]);
+			j++;
+		}
+	}
+	while (i <= middle)
+	{
+		big_res.push_back(vect[i][0]);
+		low_res.push_back(vect[i][1]);
+		i++;
+	}
+	while (j <= hight)
+	{
+		big_res.push_back(vect[j][0]);
+		low_res.push_back(vect[j][1]);
+		j++;
+	}
+}
+
+void ft_merge_sort(std::vector<std::vector<int> >& vect, std::vector<int>& big_res, 
+		std::vector<int>& low_res, int low, int hight)
+{
+	int middle;
+
+	if (hight > low)
+	{
+		middle = (low + hight) / 2;
+		ft_merge_sort(vect, big_res, low_res, low, middle);
+		ft_merge_sort(vect, big_res, low_res, middle + 1 , hight);
+		ft_merge(vect, big_res, low_res, low, hight, middle);
+	}
+}
+
+//////////////
+
 
 int ft_create_vect(std::vector<int>& vect, char** argv, int argc)
 {
@@ -54,6 +111,13 @@ void ft_print_vect(std::vector<std::vector<int> > vect)
 			std::cout << vect[i][j] << " ";
 		std::cout << std::endl;
 	}
+}
+
+void ft_print_vect(std::vector<int> vect)
+{
+	for (int i = 0; i < (int)vect.size(); i++)
+			std::cout << vect[i] << " ";
+	std::cout << std::endl;
 }
 
 void ft_sort_pair(std::vector<std::vector<int> >& vect_pair)
@@ -90,6 +154,8 @@ void ft_mi_sort(std::vector<int>& vect)
 	bool odd_even;
 	int save;
 	std::vector<std::vector<int> > vect_pair;
+	std::vector<int> big_res;
+	std::vector<int> low_res;
 
 	save = -1;
 	odd_even = vect.size() % 2; // true == odd / false == even
@@ -99,11 +165,14 @@ void ft_mi_sort(std::vector<int>& vect)
 		vect.pop_back();
 	}
 	ft_create_pair(vect, vect_pair);
-		ft_print_vect(vect_pair);
+		//ft_print_vect(vect_pair);
 	std::cout << "------------" << std::endl;
 	ft_sort_pair(vect_pair);
-		ft_print_vect(vect_pair);
+		//ft_print_vect(vect_pair);
 	std::cout << save << std::endl;
+	ft_merge_sort(vect_pair, big_res, low_res, 0, vect_pair.size() - 1);
+		//ft_print_vect(big_res);
+		//ft_print_vect(low_res);
 }
 
 
