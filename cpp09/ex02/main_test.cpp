@@ -31,9 +31,6 @@ int ft_strlen(char *str)
 		i++;
 	return (i);
 }
-////////////
-
-
 
 void ft_merge(std::vector<std::vector<int> >& vect, std::vector<int>& big_res,
 		std::vector<int>& low_res, int low, int hight, int middle)
@@ -85,9 +82,6 @@ void ft_merge_sort(std::vector<std::vector<int> >& vect, std::vector<int>& big_r
 		ft_merge(vect, big_res, low_res, low, hight, middle);
 	}
 }
-
-//////////////
-
 
 int ft_create_vect(std::vector<int>& vect, char** argv, int argc)
 {
@@ -149,6 +143,14 @@ void ft_create_pair(const std::vector<int>& vect, std::vector<std::vector<int> >
 	}
 }
 
+void ft_build_jacobsthal(std::vector<int>& jacobsthal, int size)
+{
+	jacobsthal.push_back(0);
+	jacobsthal.push_back(1);
+	for (int i = 2; i < size; i++)
+		jacobsthal.push_back(((jacobsthal[i - 2]) * 2) + jacobsthal[i - 1]);
+}
+
 void ft_mi_sort(std::vector<int>& vect)
 {
 	bool odd_even;
@@ -156,6 +158,7 @@ void ft_mi_sort(std::vector<int>& vect)
 	std::vector<std::vector<int> > vect_pair;
 	std::vector<int> big_res;
 	std::vector<int> low_res;
+	std::vector<int> jacobsthal;
 
 	save = -1;
 	odd_even = vect.size() % 2; // true == odd / false == even
@@ -166,13 +169,16 @@ void ft_mi_sort(std::vector<int>& vect)
 	}
 	ft_create_pair(vect, vect_pair);
 		//ft_print_vect(vect_pair);
-	std::cout << "------------" << std::endl;
+		//std::cout << "------------" << std::endl;
 	ft_sort_pair(vect_pair);
 		//ft_print_vect(vect_pair);
-	std::cout << save << std::endl;
+		std::cout << save << std::endl;
 	ft_merge_sort(vect_pair, big_res, low_res, 0, vect_pair.size() - 1);
 		//ft_print_vect(big_res);
 		//ft_print_vect(low_res);
+	big_res.insert(big_res.begin(), low_res[0]);
+	low_res.erase(low_res.begin());
+	ft_build_jacobsthal(jacobsthal, (int)low_res.size());
 }
 
 
