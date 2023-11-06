@@ -132,6 +132,7 @@ void ft_sort_pair(std::vector<std::vector<int> >& vect_pair)
 void ft_create_pair(const std::vector<int>& vect, std::vector<std::vector<int> >& vect_pair)
 {
 	std::vector<int> vect_temp;
+
 	for (int i = 0; i < (int)vect.size(); i++)
 	{
 		vect_temp.push_back(vect[i]);
@@ -151,6 +152,64 @@ void ft_build_jacobsthal(std::vector<int>& jacobsthal, int size)
 		jacobsthal.push_back(((jacobsthal[i - 2]) * 2) + jacobsthal[i - 1]);
 }
 
+int ft_get_up(int size)
+{
+	std::vector<int> jacobsthal;
+
+	ft_build_jacobsthal(jacobsthal, size);
+	if (jacobsthal[jacobsthal.size() - 1] > size)
+		return (size);
+	else
+		return (jacobsthal[jacobsthal.size() - 1]);
+}
+
+std::vector<int>::iterator ft_binary_search(std::vector<int>::iterator begin, std::vector<int>::iterator last, int value)
+{
+	std::vector<int>::iterator middle;
+	
+	while (1)
+	{
+		middle = begin + std::distance(begin, last) / 2;
+		if (std::distance (begin, last) < 2)
+		{
+			if (value < *begin)
+				return (begin);
+			return (last);
+		}
+		else
+		{
+			if (value > *middle)
+				begin = middle;
+			else
+				last = middle;
+		}
+	}
+}
+
+void ft_insertion(std::vector<int>& big_res, std::vector<int>& low_res, std::vector<int>& result)
+{
+	int up;
+	int low;
+	std::vector<int>::iterator pos;
+
+	up = 1;
+	low = 1;
+	while (up < (int)low_res.size())
+	{
+		low = up;
+		up = ft_get_up((int)low_res.size());
+		for (int i = low; i < up; i++)
+			result.push_back(big_res[i]);
+		for (int i = low; i < up; i++)
+		{
+			//last = result.end();
+			pos = ft_binary_search(result.begin(), result.end(), low_res[i]);
+			std::cout << "Pos bad: " << pos - result.begin() << std::endl;
+			result.insert(pos, low_res[i]);
+		}
+	}
+}
+
 void ft_mi_sort(std::vector<int>& vect)
 {
 	bool odd_even;
@@ -158,6 +217,7 @@ void ft_mi_sort(std::vector<int>& vect)
 	std::vector<std::vector<int> > vect_pair;
 	std::vector<int> big_res;
 	std::vector<int> low_res;
+	std::vector<int> result;
 	std::vector<int> jacobsthal;
 
 	save = -1;
@@ -176,9 +236,15 @@ void ft_mi_sort(std::vector<int>& vect)
 	ft_merge_sort(vect_pair, big_res, low_res, 0, vect_pair.size() - 1);
 		//ft_print_vect(big_res);
 		//ft_print_vect(low_res);
-	big_res.insert(big_res.begin(), low_res[0]);
-	low_res.erase(low_res.begin());
-	ft_build_jacobsthal(jacobsthal, (int)low_res.size());
+	//big_res.insert(big_res.begin(), low_res[0]);
+	//low_res.erase(low_res.begin());
+	result.push_back(low_res[0]);
+	result.push_back(big_res[0]);
+	ft_insertion(big_res, low_res, result);
+	ft_print_vect(result);
+	//while ()
+	//ft_build_jacobsthal(jacobsthal, (int)low_res.size());
+	//std::cout << "Jacob my: " << jacobsthal[jacobsthal.size() - 1];
 }
 
 
