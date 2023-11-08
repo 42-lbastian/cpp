@@ -32,11 +32,11 @@ int ft_strlen(char *str)
 	return (i);
 }
 
-void ft_merge(std::vector<std::vector<int> >& vect, std::vector<int>& big_res,
-		std::vector<int>& low_res, int low, int hight, int middle)
+void ft_merge(std::vector<std::vector<int> >& vect, int low, int hight, int middle)
 {
 	int i;
 	int j;
+	std::vector<std::vector<int> > vect_temp;
 
 	i = low;
 	j = middle + 1;
@@ -44,42 +44,50 @@ void ft_merge(std::vector<std::vector<int> >& vect, std::vector<int>& big_res,
 	{
 		if (vect[i][0] < vect[j][0])
 		{
-			big_res.push_back(vect[i][0]);
-			low_res.push_back(vect[i][1]);
+			//big_res.push_back(vect[i][0]);
+			//low_res.push_back(vect[i][1]);
+			vect_temp.push_back(vect[i]);
 			i++;
 		}
 		else
 		{
-			big_res.push_back(vect[j][0]);
-			low_res.push_back(vect[j][1]);
+			//big_res.push_back(vect[j][0]);
+			//low_res.push_back(vect[j][1]);
+			vect_temp.push_back(vect[j]);
 			j++;
 		}
 	}
 	while (i <= middle)
 	{
-		big_res.push_back(vect[i][0]);
-		low_res.push_back(vect[i][1]);
+		//big_res.push_back(vect[i][0]);
+		//low_res.push_back(vect[i][1]);
+		vect_temp.push_back(vect[i]);
 		i++;
 	}
 	while (j <= hight)
 	{
-		big_res.push_back(vect[j][0]);
-		low_res.push_back(vect[j][1]);
+		//big_res.push_back(vect[j][0]);
+		//low_res.push_back(vect[j][1]);
+		vect_temp.push_back(vect[j]);
 		j++;
+	}
+	for (int i = low; i <= hight / 2; i++)
+	{
+		vect[i][0] = vect_temp[i][0];
+		vect[i][1] = vect_temp[i][1];
 	}
 }
 
-void ft_merge_sort(std::vector<std::vector<int> >& vect, std::vector<int>& big_res, 
-		std::vector<int>& low_res, int low, int hight)
+void ft_merge_sort(std::vector<std::vector<int> >& vect, int low, int hight)
 {
 	int middle;
 
 	if (hight > low)
 	{
 		middle = (low + hight) / 2;
-		ft_merge_sort(vect, big_res, low_res, low, middle);
-		ft_merge_sort(vect, big_res, low_res, middle + 1 , hight);
-		ft_merge(vect, big_res, low_res, low, hight, middle);
+		ft_merge_sort(vect, low, middle);
+		ft_merge_sort(vect, middle + 1 , hight);
+		ft_merge(vect, low, hight, middle);
 	}
 }
 
@@ -215,8 +223,6 @@ void ft_mi_sort(std::vector<int>& vect)
 	bool odd_even;
 	int save;
 	std::vector<std::vector<int> > vect_pair;
-	std::vector<int> big_res;
-	std::vector<int> low_res;
 	std::vector<int> jacobsthal;
 
 	save = -1;
@@ -228,11 +234,14 @@ void ft_mi_sort(std::vector<int>& vect)
 	}
 	ft_create_pair(vect, vect_pair);
 	ft_sort_pair(vect_pair);
-	ft_merge_sort(vect_pair, big_res, low_res, 0, vect_pair.size() - 1);
-	ft_binary_insertion(big_res, low_res);
-	if (odd_even == true)
-		ft_add_save(big_res, save);
-	ft_print_vect(big_res);
+	ft_print_vect(vect_pair);
+	ft_merge_sort(vect_pair, 0, vect_pair.size() - 1);
+	std::cout << "----------------" << std::endl;
+	ft_print_vect(vect_pair);
+	//ft_binary_insertion(big_res, low_res);
+	//if (odd_even == true)
+//		ft_add_save(big_res, save);
+//	ft_print_vect(big_res);
 }
 
 
