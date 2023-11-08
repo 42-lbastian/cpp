@@ -163,51 +163,51 @@ int ft_get_up(int size)
 		return (jacobsthal[jacobsthal.size() - 1]);
 }
 
-std::vector<int>::iterator ft_binary_search(std::vector<int>::iterator begin, std::vector<int>::iterator last, int value)
+int ft_binary_search(std::vector<int> vect, int low, int hight, int value)
 {
-	std::vector<int>::iterator middle;
-	
-	while (1)
+	int middle;
+
+	if (low > hight)
 	{
-		middle = begin + std::distance(begin, last) / 2;
-		if (std::distance (begin, last) < 2)
-		{
-			if (value < *begin)
-				return (begin);
-			return (last);
-		}
+		if (value > vect[low])
+			return (low + 1);
 		else
+			return (low);
+	}
+	middle = (low + hight) / 2;
+	if (value > vect[middle])
+		return (ft_binary_search(vect, middle + 1, hight, value));
+	else if (value == vect[middle])
+		return (middle + 1);
+	return (ft_binary_search(vect, low, middle - 1, value));
+}
+
+void ft_binary_insertion(std::vector<int>& big_res, std::vector<int>& low_res)
+{
+	int index;
+
+	while (low_res.size() != 0)
+	{
+		for (int hight = ft_get_up(low_res.size()); hight > 0; hight--)
 		{
-			if (value > *middle)
-				begin = middle;
-			else
-				last = middle;
+			index = ft_binary_search(big_res, 0, hight - 1, low_res[hight - 1]);
+			big_res.insert(big_res.begin() + index, low_res[hight - 1]);
+			low_res.erase(low_res.begin() + hight - 1);
 		}
 	}
 }
 
-void ft_insertion(std::vector<int>& big_res, std::vector<int>& low_res, std::vector<int>& result)
+void ft_add_save(std::vector<int>& big_res, int save)
 {
-	int up;
-	int low;
-	std::vector<int>::iterator pos;
+	int i;
 
-	up = 1;
-	low = 1;
-	while (up < (int)low_res.size())
-	{
-		low = up;
-		up = ft_get_up((int)low_res.size());
-		for (int i = low; i < up; i++)
-			result.push_back(big_res[i]);
-		for (int i = low; i < up; i++)
-		{
-			//last = result.end();
-			pos = ft_binary_search(result.begin(), result.end(), low_res[i]);
-			std::cout << "Pos bad: " << pos - result.begin() << std::endl;
-			result.insert(pos, low_res[i]);
-		}
-	}
+	i = 0;
+	while (i < (int)big_res.size() && big_res[i] < save)
+		i++;
+	if (i == (int)big_res.size())
+		big_res.push_back(save);
+	else
+		big_res.insert(big_res.begin() + i, save);
 }
 
 void ft_mi_sort(std::vector<int>& vect)
@@ -217,7 +217,6 @@ void ft_mi_sort(std::vector<int>& vect)
 	std::vector<std::vector<int> > vect_pair;
 	std::vector<int> big_res;
 	std::vector<int> low_res;
-	std::vector<int> result;
 	std::vector<int> jacobsthal;
 
 	save = -1;
@@ -228,23 +227,12 @@ void ft_mi_sort(std::vector<int>& vect)
 		vect.pop_back();
 	}
 	ft_create_pair(vect, vect_pair);
-		//ft_print_vect(vect_pair);
-		//std::cout << "------------" << std::endl;
 	ft_sort_pair(vect_pair);
-		//ft_print_vect(vect_pair);
-		std::cout << save << std::endl;
 	ft_merge_sort(vect_pair, big_res, low_res, 0, vect_pair.size() - 1);
-		//ft_print_vect(big_res);
-		//ft_print_vect(low_res);
-	//big_res.insert(big_res.begin(), low_res[0]);
-	//low_res.erase(low_res.begin());
-	result.push_back(low_res[0]);
-	result.push_back(big_res[0]);
-	ft_insertion(big_res, low_res, result);
-	ft_print_vect(result);
-	//while ()
-	//ft_build_jacobsthal(jacobsthal, (int)low_res.size());
-	//std::cout << "Jacob my: " << jacobsthal[jacobsthal.size() - 1];
+	ft_binary_insertion(big_res, low_res);
+	if (odd_even == true)
+		ft_add_save(big_res, save);
+	ft_print_vect(big_res);
 }
 
 
