@@ -256,10 +256,6 @@ void ft_mi_sort(std::vector<int>& vect)
 		ft_add_save(vect, save);
 }
 
-
-
-///////////////////////////////////CHECK VALEUR UNIQUE
-
 int main(int argc, char **argv)
 {
 	if (argc > 1)
