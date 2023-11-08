@@ -250,9 +250,10 @@ void ft_mi_sort(std::vector<int>& vect)
 	ft_merge_sort(vect_pair, 0, vect_pair.size() - 1);
 	ft_create_big_low_vect(big_res, low_res, vect_pair);
 	ft_binary_insertion(big_res, low_res);
+	for (int i = 0; i < (int)vect.size(); i++)
+		vect[i] = big_res[i];
 	if (odd_even == true)
-		ft_add_save(big_res, save);
-	ft_print_vect(big_res);
+		ft_add_save(vect, save);
 }
 
 
@@ -267,6 +268,7 @@ int main(int argc, char **argv)
 		if (ft_create_vect(vect, argv, argc) == 0)
 		{
 			ft_mi_sort(vect);
+			ft_print_vect(vect);
 		}
 		else
 		{
