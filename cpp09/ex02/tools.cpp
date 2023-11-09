@@ -37,7 +37,7 @@ void ft_build_jacobsthal(std::deque<int>& jacobsthal, int size)
 		jacobsthal.push_back(((jacobsthal[i - 2]) * 2) + jacobsthal[i - 1]);
 }
 
-int ft_get_up(int size)
+int ft_get_up_deq(int size)
 {
 	std::deque<int> jacobsthal;
 
@@ -48,6 +48,7 @@ int ft_get_up(int size)
 		return (jacobsthal[jacobsthal.size() - 1]);
 }
 
+
 void ft_build_jacobsthal(std::vector<int>& jacobsthal, int size)
 {
 	jacobsthal.push_back(0);
@@ -55,3 +56,15 @@ void ft_build_jacobsthal(std::vector<int>& jacobsthal, int size)
 	for (int i = 2; i < size; i++)
 		jacobsthal.push_back(((jacobsthal[i - 2]) * 2) + jacobsthal[i - 1]);
 }
+
+int ft_get_up_vect(int size)
+{
+	std::vector<int> jacobsthal;
+
+	ft_build_jacobsthal(jacobsthal, size);
+	if (jacobsthal[jacobsthal.size() - 1] > size)
+		return (size);
+	else
+		return (jacobsthal[jacobsthal.size() - 1]);
+}
+

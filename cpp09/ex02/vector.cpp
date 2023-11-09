@@ -138,12 +138,15 @@ void ft_binary_insertion(std::vector<int>& big_res, std::vector<int>& low_res)
 
 	while (low_res.size() != 0)
 	{
-		for (int hight = ft_get_up(low_res.size()); hight > 0; hight--)
+		int hight = ft_get_up_vect(low_res.size());
+		for (; hight > 0; hight--)
 		{
 			index = ft_binary_search(big_res, 0, hight - 1, low_res[hight - 1]);
 			big_res.insert(big_res.begin() + index, low_res[hight - 1]);
 			low_res.erase(low_res.begin() + hight - 1);
+			std::cout << "For" << std::endl;
 		}
+		std::cout << "Hight: " << hight << std::endl;
 		std::cout << "Low res size: " << low_res.size() << std::endl;
 	}
 }

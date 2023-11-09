@@ -138,7 +138,7 @@ void ft_binary_insertion(std::deque<int>& big_res, std::deque<int>& low_res)
 
 	while (low_res.size() != 0)
 	{
-		for (int hight = ft_get_up(low_res.size()); hight > 0; hight--)
+		for (int hight = ft_get_up_deq(low_res.size()); hight > 0; hight--)
 		{
 			index = ft_binary_search(big_res, 0, hight - 1, low_res[hight - 1]);
 			big_res.insert(big_res.begin() + index, low_res[hight - 1]);
