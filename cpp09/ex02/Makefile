@@ -1,0 +1,43 @@
+NAME = PmergeMe
+
+SRCS =	main.cpp \
+		deque.cpp \
+		vector.cpp \
+		PmergeMe.cpp \
+		tools.cpp \
+
+OBJS = ${SRCS:.cpp=.o}
+
+DEPS = ${SRCS:.cpp=.d}
+
+
+CC = c++
+
+CFLAGS = -g3 -Wall -Wextra -Werror -std=c++98 -MMD
+FFLAGS = -g -fsanitize=address
+
+all:	$(NAME)
+
+%.o : %.cpp
+		$(CC) $(CFLAGS) -c $<
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+fsan: $(OBJS)
+	$(CC) $(CFLAGS) $(FFLAGS) $(OBJS) -o $(NAME)
+
+clean:
+	rm -rf $(OBJS)
+	rm -rf $(DEPS)
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all
+
+resan: fclean fsan
+
+-include $(DEPS)
+
+.PHONY: all fsan clean fclean re

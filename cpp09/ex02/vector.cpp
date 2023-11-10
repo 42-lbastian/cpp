@@ -144,10 +144,7 @@ void ft_binary_insertion(std::vector<int>& big_res, std::vector<int>& low_res)
 			index = ft_binary_search(big_res, 0, hight - 1, low_res[hight - 1]);
 			big_res.insert(big_res.begin() + index, low_res[hight - 1]);
 			low_res.erase(low_res.begin() + hight - 1);
-			std::cout << "For" << std::endl;
 		}
-		std::cout << "Hight: " << hight << std::endl;
-		std::cout << "Low res size: " << low_res.size() << std::endl;
 	}
 }
 
@@ -190,15 +187,10 @@ void ft_mi_sort(std::vector<int>& vect)
 		vect.pop_back();
 	}
 	ft_create_pair(vect, vect_pair);
-	std::cout << "Pair" << std::endl;
 	ft_sort_pair(vect_pair);
-	std::cout << "Sort Pair" << std::endl;
 	ft_merge_sort(vect_pair, 0, vect_pair.size() - 1);
-	std::cout << "Merge Pair" << std::endl;
 	ft_create_big_low_vect(big_res, low_res, vect_pair);
-	std::cout << "Big Low Pair" << std::endl;
 	ft_binary_insertion(big_res, low_res);
-	std::cout << "Binary" << std::endl;
 	for (int i = 0; i < (int)vect.size(); i++)
 		vect[i] = big_res[i];
 	if (odd_even == true)

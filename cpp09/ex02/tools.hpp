@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <deque>
 #include <vector>
+#include "vector.hpp"
 
 int ft_atoi(const std::string str, int& nb);
 int ft_strlen(char *str);

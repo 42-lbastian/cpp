@@ -29,7 +29,7 @@ int ft_strlen(char *str)
 	return (i);
 }
 
-void ft_build_jacobsthal(std::deque<int>& jacobsthal, int size)
+void ft_build_jacobsthal(std::deque<unsigned long long>& jacobsthal, int size)
 {
 	jacobsthal.push_back(0);
 	jacobsthal.push_back(1);
@@ -39,17 +39,17 @@ void ft_build_jacobsthal(std::deque<int>& jacobsthal, int size)
 
 int ft_get_up_deq(int size)
 {
-	std::deque<int> jacobsthal;
+	std::deque<unsigned long long> jacobsthal;
 
 	ft_build_jacobsthal(jacobsthal, size);
-	if (jacobsthal[jacobsthal.size() - 1] > size)
+	if (jacobsthal[jacobsthal.size() - 1] > (unsigned long long)size)
 		return (size);
 	else
 		return (jacobsthal[jacobsthal.size() - 1]);
 }
 
 
-void ft_build_jacobsthal(std::vector<int>& jacobsthal, int size)
+void ft_build_jacobsthal(std::vector<unsigned long long>& jacobsthal, int size)
 {
 	jacobsthal.push_back(0);
 	jacobsthal.push_back(1);
@@ -59,10 +59,10 @@ void ft_build_jacobsthal(std::vector<int>& jacobsthal, int size)
 
 int ft_get_up_vect(int size)
 {
-	std::vector<int> jacobsthal;
+	std::vector<unsigned long long> jacobsthal;
 
 	ft_build_jacobsthal(jacobsthal, size);
-	if (jacobsthal[jacobsthal.size() - 1] > size)
+	if (jacobsthal[jacobsthal.size() - 1] > (unsigned long long)size)
 		return (size);
 	else
 		return (jacobsthal[jacobsthal.size() - 1]);
