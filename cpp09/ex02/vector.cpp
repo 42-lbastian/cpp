@@ -135,10 +135,11 @@ int ft_binary_search(std::vector<int> vect, int low, int hight, int value)
 void ft_binary_insertion(std::vector<int>& big_res, std::vector<int>& low_res)
 {
 	int index;
+	int hight;
 
 	while (low_res.size() != 0)
 	{
-		int hight = ft_get_up_vect(low_res.size());
+		hight = ft_get_up_vect(low_res.size());
 		for (; hight > 0; hight--)
 		{
 			index = ft_binary_search(big_res, 0, hight - 1, low_res[hight - 1]);
