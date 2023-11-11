@@ -178,6 +178,43 @@ int ft_binary_search(std::vector<int> vect, int low, int hight, int value)
 	return (ft_binary_search(vect, low, middle - 1, value));
 }
 
+void ft_binary_insertion(std::vector<int>& big_res, std::vector<int>& low_res)
+{
+	int index;
+	int hight;
+	int size;
+	
+
+	size = (int)low_res.size();
+	for (int i = 1; i < (int)low_res.size(); i++)
+	{
+		hight = ft_get_up_vect(size - (low_res.size() - 1));
+		index = ft_binary_search(big_res, 0, hight, low_res[i]);
+		big_res.insert(big_res.begin() + index, low_res[i]);
+		low_res.erase(low_res.begin() + i);
+	}
+}
+
+/* WORKING BUT NO JACOB
+int ft_binary_search(std::vector<int> vect, int low, int hight, int value)
+{
+	int middle;
+	
+	if (low > hight)
+	{
+		if (value > vect[low])
+			return (low + 1);
+		else
+			return (low);
+	}
+	middle = (low + hight) / 2;
+	if (value > vect[middle])
+		return (ft_binary_search(vect, middle + 1, hight, value));
+	else if (value == vect[middle])
+		return (middle + 1);
+	return (ft_binary_search(vect, low, middle - 1, value));
+}
+
 void ft_binary_insertion(std::vector<int> big_res, std::vector<int> low_res)
 {
 	int index;
@@ -192,6 +229,8 @@ void ft_binary_insertion(std::vector<int> big_res, std::vector<int> low_res)
 	std::cout << "Binary: ";
 	ft_print_vect(big_res);
 }
+*/
+
 
 void ft_add_save(std::vector<int>& big_res, int save)
 {
