@@ -59,16 +59,23 @@ void ft_binary_insertion(std::vector<int> vect)
 	ft_print_vect(vect);
 }
 
-int main()
+int main(int argc, char **argv)
 {
+	int i = 1;
 	std::vector<int> vect;
-
+/*
 	vect.push_back(1);
 	vect.push_back(12);
 	vect.push_back(0);
 	vect.push_back(23);
 	vect.push_back(4);
 	vect.push_back(5);
+*/
+	while (argv[i])
+	{
+		vect.push_back(atoi(argv[i]));
+		i++;
+	}
 	ft_print_vect(vect);
 	ft_classic_insertion(vect);
 	ft_binary_insertion(vect);
