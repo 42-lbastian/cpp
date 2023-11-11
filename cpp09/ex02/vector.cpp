@@ -186,12 +186,19 @@ void ft_binary_insertion(std::vector<int>& big_res, std::vector<int>& low_res)
 	
 
 	size = (int)low_res.size();
-	for (int i = 1; i < (int)low_res.size(); i++)
+	size++;
+	while (low_res.size() != 0)
 	{
-		hight = ft_get_up_vect(size - (low_res.size() - 1));
-		index = ft_binary_search(big_res, 0, hight, low_res[i]);
-		big_res.insert(big_res.begin() + index, low_res[i]);
-		low_res.erase(low_res.begin() + i);
+		hight = ft_get_up_vect(size - (low_res.size()), size);
+		for (int i = 0; i <= hight; i++)
+		{
+			index = ft_binary_search(big_res, 0, hight, low_res[i]);
+			big_res.insert(big_res.begin() + index, low_res[i]);
+			//std::cout << "i :" << i << " size: " << low_res.size() << std::endl;
+			std::cout << "index :" << index << " H: " << hight << std::endl;
+			low_res.erase(low_res.begin() + i);
+		}
+		std::cout << "H: " << hight << std::endl;
 	}
 }
 

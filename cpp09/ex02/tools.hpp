@@ -10,6 +10,6 @@
 int ft_atoi(const std::string str, int& nb);
 int ft_strlen(char *str);
 int ft_get_up_deq(int size);
-int ft_get_up_vect(int size);
+int ft_get_up_vect(int size, int real_size);
 
 #endif

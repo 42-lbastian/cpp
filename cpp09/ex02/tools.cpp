@@ -78,14 +78,20 @@ int ft_build_jacobsthal(int size)
 	return (result);
 }
 
-int ft_get_up_vect(int size)
+int ft_get_up_vect(int size, int real_size)
 {
 	int jacob;
 
 	jacob = ft_build_jacobsthal(size);
-	if (jacob > (int)size)
+	if (jacob > (int)real_size)
+	{
+		std::cout << "Jacob: " << jacob << " Size:" << size << std::endl;
 		return (size - 1);
+	}
 	else
+	{
+		std::cout << "Jacob: " << jacob << " Size:" << size << std::endl;
 		return (jacob);
+	}
 }
 
