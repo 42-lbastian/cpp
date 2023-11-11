@@ -113,6 +113,7 @@ void ft_create_pair(const std::vector<int>& vect, std::vector<std::vector<int> >
 	}
 }
 
+/*
 int ft_binary_search(std::vector<int> vect, int low, int hight, int value)
 {
 	int middle;
@@ -136,17 +137,60 @@ void ft_binary_insertion(std::vector<int>& big_res, std::vector<int>& low_res)
 {
 	int index;
 	int hight;
+	int nb;
 
-	while (low_res.size() != 0)
+	nb = 2;
+	while (nb < 13)
 	{
-		hight = ft_get_up_vect(low_res.size());
+		hight = ft_get_up_vect(nb, (int)low_res.size());
+		//std::cout << "H: " << hight << std::endl;
 		for (; hight > 0; hight--)
 		{
-			index = ft_binary_search(big_res, 0, hight - 1, low_res[hight - 1]);
+			index = ft_binary_search(big_res, 0, hight, low_res[hight - 1]);
+			//std::cout << "index: " << index << std::endl;
 			big_res.insert(big_res.begin() + index, low_res[hight - 1]);
+			//std::cout << "H: " << hight << "size: " << low_res.size() << std::endl;
 			low_res.erase(low_res.begin() + hight - 1);
 		}
+		nb++;
+		//std::cout << "Size: " << low_res.size()  << std::endl;
 	}
+}
+*/
+
+
+int ft_binary_search(std::vector<int> vect, int low, int hight, int value)
+{
+	int middle;
+	
+	if (low > hight)
+	{
+		if (value > vect[low])
+			return (low + 1);
+		else
+			return (low);
+	}
+	middle = (low + hight) / 2;
+	if (value > vect[middle])
+		return (ft_binary_search(vect, middle + 1, hight, value));
+	else if (value == vect[middle])
+		return (middle + 1);
+	return (ft_binary_search(vect, low, middle - 1, value));
+}
+
+void ft_binary_insertion(std::vector<int> big_res, std::vector<int> low_res)
+{
+	int index;
+	int hight;
+
+	for (int i = 1; i < (int)low_res.size(); i++)
+	{
+		index = ft_binary_search(big_res, 0, i - 1, low_res[i]);
+		big_res.insert(big_res.begin() + index, low_res[i]);
+		//vect.erase(vect.begin() + i + 1);
+	}
+	std::cout << "Binary: ";
+	ft_print_vect(big_res);
 }
 
 void ft_add_save(std::vector<int>& big_res, int save)
