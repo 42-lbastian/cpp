@@ -158,7 +158,7 @@ void ft_binary_insertion(std::vector<int>& big_res, std::vector<int>& low_res)
 }
 */
 
-
+/*
 int ft_binary_search(std::vector<int> vect, int low, int hight, int value)
 {
 	int middle;
@@ -189,20 +189,19 @@ void ft_binary_insertion(std::vector<int>& big_res, std::vector<int>& low_res)
 	size++;
 	while (low_res.size() != 0)
 	{
-		hight = ft_get_up_vect(size - (low_res.size()), size);
-		for (int i = 0; i <= hight; i++)
+		hight = ft_get_up_vect(size - (low_res.size()), low_res.size());
+		for (; hight > 0; hight--)
 		{
-			index = ft_binary_search(big_res, 0, hight, low_res[i]);
-			big_res.insert(big_res.begin() + index, low_res[i]);
-			//std::cout << "i :" << i << " size: " << low_res.size() << std::endl;
-			std::cout << "index :" << index << " H: " << hight << std::endl;
-			low_res.erase(low_res.begin() + i);
+			index = ft_binary_search(big_res, 0, hight, low_res[hight - 1]);
+			std::cout << "Index: " << index << " | Value: " << low_res[hight - 1] << "Hight: " << hight << std::endl;
+			big_res.insert(big_res.begin() + index, low_res[hight - 1]);
+			low_res.erase(low_res.begin() + hight - 1);
 		}
-		std::cout << "H: " << hight << std::endl;
 	}
 }
+*/
 
-/* WORKING BUT NO JACOB
+// WORKING BUT NO JACOB
 int ft_binary_search(std::vector<int> vect, int low, int hight, int value)
 {
 	int middle;
@@ -222,10 +221,77 @@ int ft_binary_search(std::vector<int> vect, int low, int hight, int value)
 	return (ft_binary_search(vect, low, middle - 1, value));
 }
 
+/*
 void ft_binary_insertion(std::vector<int> big_res, std::vector<int> low_res)
 {
 	int index;
 	int hight;
+	int size;
+
+	size = low_res.size();
+	while (low_res.size() != 0)
+	{
+		hight = ft_get_up_vect(size - low_res.size(), low_res.size());
+		for (; hight >= 0; hight--)
+		{
+			index = ft_binary_search(big_res, 0, hight, low_res[hight]);
+			big_res.insert(big_res.begin() + index, low_res[hight]);
+			low_res.erase(low_res.begin() + hight);
+		}
+	}
+	std::cout << "Binary: ";
+	ft_print_vect(big_res);
+}
+*/
+
+void ft_binary_insertion(std::vector<int>& big_res, std::vector<int>& low_res)
+{
+	int index;
+	int size;
+
+	size = low_res.size();
+	size++;
+	while (low_res.size() != 0)
+	{
+		int hight = ft_get_up_vect(size - low_res.size(), low_res.size());
+		for (; hight > 0; hight--)
+		{
+			index = ft_binary_search(big_res, 0, hight - 1, low_res[hight - 1]);
+			big_res.insert(big_res.begin() + index, low_res[hight - 1]);
+			low_res.erase(low_res.begin() + hight - 1);
+		}
+		
+	}
+	std::cout << "Binary: ";
+	ft_print_vect(big_res);
+
+}
+
+/*
+void ft_binary_insertion(std::vector<int> big_res, std::vector<int> low_res)
+{
+	int index;
+
+	for (int i = 1; i < 3; i++)
+	{
+		index = ft_binary_search(big_res, 0, i - 1, low_res[i]);
+		big_res.insert(big_res.begin() + index, low_res[i]);
+		low_res.erase(low_res.begin() + i);
+	}
+	for (int i = 1; i < 5; i++)
+	{
+		index = ft_binary_search(big_res, 0, i - 1, low_res[i]);
+		big_res.insert(big_res.begin() + index, low_res[i]);
+		low_res.erase(low_res.begin() + i + 1);
+	}
+	std::cout << "Binary: ";
+	ft_print_vect(big_res);
+}
+*/
+/*
+void ft_binary_insertion(std::vector<int> big_res, std::vector<int> low_res)
+{
+	int index;
 
 	for (int i = 1; i < (int)low_res.size(); i++)
 	{
@@ -237,7 +303,6 @@ void ft_binary_insertion(std::vector<int> big_res, std::vector<int> low_res)
 	ft_print_vect(big_res);
 }
 */
-
 
 void ft_add_save(std::vector<int>& big_res, int save)
 {

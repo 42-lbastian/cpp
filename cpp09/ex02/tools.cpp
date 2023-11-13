@@ -55,7 +55,7 @@ int ft_build_jacobsthal(int size)
 	std::vector<int> jacobsthal;
 	int i;
 
-	i = 0;
+	i = 2;
 	result = 0;
 	jacobsthal.push_back(0);
 	jacobsthal.push_back(1);
@@ -70,6 +70,8 @@ int ft_build_jacobsthal(int size)
 	jacobsthal.push_back(341);
 	jacobsthal.push_back(683);
 	jacobsthal.push_back(1365);
+	result += jacobsthal[0];
+	result += jacobsthal[1];
 	while (size > result)
 	{
 		result += jacobsthal[i];
@@ -85,8 +87,8 @@ int ft_get_up_vect(int size, int real_size)
 	jacob = ft_build_jacobsthal(size);
 	if (jacob > (int)real_size)
 	{
-		std::cout << "Jacob: " << jacob << " Size:" << size << std::endl;
-		return (size - 1);
+		std::cout << "Jacob B: " << jacob << " Size:" << size << std::endl;
+		return (real_size);
 	}
 	else
 	{
