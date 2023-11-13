@@ -49,6 +49,13 @@ int ft_calculate(const char oper, std::stack<int>& mystack)
 	if (oper == '*')
 		mystack.push(val2 * val1);
 	if (oper == '/')
+	{
+		if (val1 == 0)
+		{
+			std::cout << "Div by 0 invalid" << std::endl;
+			return (1);
+		}
 		mystack.push(val2 / val1);
+	}
 	return (0);
 }
