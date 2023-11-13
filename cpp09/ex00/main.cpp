@@ -126,7 +126,21 @@ void ft_find_date(const int& year, const int& month, const int& day, const doubl
 
 }
 
-void ft_read_compare_data(char **argv, const std::list<Data>& lst)
+int ft_check_date_before(int year, int month, int day, std::list<Data>& lst)
+{
+	std::list<Data>::iterator it;
+
+	it = lst.begin();
+	if (year < it->getYear())
+		return (1);
+	if (year == it->getYear() && month < it->getMonth())
+		return (1);
+	if (year == it->getYear() && month == it->getMonth() && day < it->getDay())
+		return (1);
+	return (0);
+}
+
+void ft_read_compare_data(char **argv, std::list<Data>& lst)
 {
 	std::fstream sfile;
 	std::string str;
@@ -170,7 +184,7 @@ void ft_read_compare_data(char **argv, const std::list<Data>& lst)
 				std::cout << "Amount Error: " << ss.str() << std::endl;
 				error = 1;
 			}
-			if (error == 0 && ft_check_date(year, month, day))
+			if (error == 0 && (ft_check_date(year, month, day) || ft_check_date_before(year, month, day, lst)))
 			{
 				std::cout << "Date Invalid: " << ss.str() << std::endl;
 				error = 1;
