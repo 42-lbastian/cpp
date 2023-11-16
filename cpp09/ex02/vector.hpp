@@ -6,7 +6,7 @@
 #include <limits.h>
 #include <stdlib.h>
 
-void ft_mi_sort(std::vector<int>& vect);
+void ft_mi_sort(std::vector<int>& vect, std::vector<int>& result);
 void ft_print_vect(std::vector<int> vect);
 int ft_create_vect(std::vector<int>& vect, char** argv, int argc);
 

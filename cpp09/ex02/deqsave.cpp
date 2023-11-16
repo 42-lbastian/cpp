@@ -116,7 +116,7 @@ void ft_create_pair(const std::deque<int>& deq, std::deque<std::deque<int> >& de
 int ft_binary_search(std::deque<int> deq, int low, int hight, int value)
 {
 	int middle;
-	
+
 	if (low > hight)
 	{
 		if (value > deq[low])
@@ -132,79 +132,17 @@ int ft_binary_search(std::deque<int> deq, int low, int hight, int value)
 	return (ft_binary_search(deq, low, middle - 1, value));
 }
 
-int ft_jacob_deq(int nb_1, int nb_2, int size)
+void ft_binary_insertion(std::deque<int>& big_res, std::deque<int>& low_res)
 {
-	int jacob;
-
-	jacob = nb_1 + (nb_2 * 2);
-	if (jacob < size)
-		return (jacob);
-	else
-		return (size);
-}
-
-/*
-void ft_binary_insertion(std::deque<int> big_res, std::deque<int> low_res)
-{
-	std::deque<int> result;
-	int low;
-	int hight;
-	int tmp;
 	int index;
-	int last;
 
-	low = 1;
-	hight = 1;
-	result.push_back(low_res.front());
-	result.push_back(big_res.front());
-	while (hight != (int)big_res.size())
+	while (low_res.size() != 0)
 	{
-		tmp = low;
-		low = hight;
-		hight = ft_jacob_deq(low, tmp, big_res.size());
-		for (int i = low; i < hight; i++)
-			result.push_back(big_res[i]);
-		for (int i = hight - 1; i >= low; i--)
+		for (int hight = ft_get_up_deq(low_res.size()); hight > 0; hight--)
 		{
-			if (hight == (int)result.size())
-				last = hight;
-			else
-				last = hight + low - 1;
-			index = ft_binary_search(result, 0, last, low_res[i]);
-			result.insert(result.begin() + index, low_res[i]);
-		}
-	}
-	ft_print_deq(result);
-}
-*/
-
-void ft_binary_insertion(std::deque<std::deque<int> > deq_pair, std::deque<int>& result)
-{
-	int low;
-	int hight;
-	int tmp;
-	int index;
-	int last;
-
-	low = 1;
-	hight = 1;
-	result.push_back(deq_pair.front()[1]);
-	result.push_back(deq_pair.front()[0]);
-	while (hight != (int)deq_pair.size())
-	{
-		tmp = low;
-		low = hight;
-		hight = ft_jacob_deq(low, tmp, deq_pair.size());
-		for (int i = low; i < hight; i++)
-			result.push_back(deq_pair[i][0]);
-		for (int i = hight - 1; i >= low; i--)
-		{
-			if (hight == (int)result.size())
-				last = hight;
-			else
-				last = hight + low - 1;
-			index = ft_binary_search(result, 0, last, deq_pair[i][1]);
-			result.insert(result.begin() + index, deq_pair[i][1]);
+			index = ft_binary_search(big_res, 0, hight - 1, low_res[hight - 1]);
+			big_res.insert(big_res.begin() + index, low_res[hight - 1]);
+			low_res.erase(low_res.begin() + hight - 1);
 		}
 	}
 }
@@ -232,11 +170,13 @@ void ft_create_big_low_deq(std::deque<int>& big_res, std::deque<int>& low_res,
 	}
 }
 
-void ft_mi_sort(std::deque<int>& deq, std::deque<int>& result)
+void ft_mi_sort(std::deque<int>& deq)
 {
 	bool odd_even;
 	int save;
 	std::deque<std::deque<int> > deq_pair;
+	std::deque<int> big_res;
+	std::deque<int> low_res;
 
 	save = -1;
 	odd_even = deq.size() % 2; // true == odd / false == even
@@ -248,7 +188,10 @@ void ft_mi_sort(std::deque<int>& deq, std::deque<int>& result)
 	ft_create_pair(deq, deq_pair);
 	ft_sort_pair(deq_pair);
 	ft_merge_sort(deq_pair, 0, deq_pair.size() - 1);
-	ft_binary_insertion(deq_pair, result);
+	ft_create_big_low_deq(big_res, low_res, deq_pair);
+	ft_binary_insertion(big_res, low_res);
+	for (int i = 0; i < (int)deq.size(); i++)
+		deq[i] = big_res[i];
 	if (odd_even == true)
-		ft_add_save(result, save);
+		ft_add_save(deq, save);
 }
