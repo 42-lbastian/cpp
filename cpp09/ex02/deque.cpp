@@ -143,41 +143,6 @@ int ft_jacob_deq(int nb_1, int nb_2, int size)
 		return (size);
 }
 
-/*
-void ft_binary_insertion(std::deque<int> big_res, std::deque<int> low_res)
-{
-	std::deque<int> result;
-	int low;
-	int hight;
-	int tmp;
-	int index;
-	int last;
-
-	low = 1;
-	hight = 1;
-	result.push_back(low_res.front());
-	result.push_back(big_res.front());
-	while (hight != (int)big_res.size())
-	{
-		tmp = low;
-		low = hight;
-		hight = ft_jacob_deq(low, tmp, big_res.size());
-		for (int i = low; i < hight; i++)
-			result.push_back(big_res[i]);
-		for (int i = hight - 1; i >= low; i--)
-		{
-			if (hight == (int)result.size())
-				last = hight;
-			else
-				last = hight + low - 1;
-			index = ft_binary_search(result, 0, last, low_res[i]);
-			result.insert(result.begin() + index, low_res[i]);
-		}
-	}
-	ft_print_deq(result);
-}
-*/
-
 void ft_binary_insertion(std::deque<std::deque<int> > deq_pair, std::deque<int>& result)
 {
 	int low;
@@ -238,6 +203,11 @@ void ft_mi_sort(std::deque<int>& deq, std::deque<int>& result)
 	int save;
 	std::deque<std::deque<int> > deq_pair;
 
+	if (deq.size() == 1)
+	{
+		result.push_back(deq.front());
+		return ;
+	}
 	save = -1;
 	odd_even = deq.size() % 2; // true == odd / false == even
 	if (odd_even == true)
