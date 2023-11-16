@@ -14,11 +14,12 @@ int main(int argc, char **argv)
 	}
 
 	i = 2;
-	while (argv[i])
+	for (std::vector<int>::iterator it = vect.begin() + 1; it != vect.end(); it++)
 	{
-		if (vect[i - 1] > vect[i])
+		
+		if (*(it - 1) > (*it))
 		{
-			std::cout << "Error: " << vect[i - 1] << " | " << vect[i] << std::endl;
+			std::cout << "Error: " << *(it - 1) << " | " << (*it) << std::endl;
 		}
 		i++;
 	}
